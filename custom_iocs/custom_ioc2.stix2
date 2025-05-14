@@ -1,0 +1,18 @@
+{
+    "type": "bundle",
+    "id": "bundle--d01748f5-6291-4a49-8548-52ac035142f9",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f4e1c2b3-a5d6-4f78-8b9a-1c2d3e4f5678",
+            "created": "2025-05-14T13:27:11.000Z",
+            "modified": "2025-05-14T13:27:11.000Z",
+            "name": "Test Android App Package Name",
+            "description": "Indicator for the Android application package name 'com.facebook.appmanager'.",
+            "pattern_type": "stix",
+            "pattern": "[app:id = 'com.facebook.appmanager']",
+            "valid_from": "2025-05-14T13:27:11.000Z"
+        }
+    ]
+}

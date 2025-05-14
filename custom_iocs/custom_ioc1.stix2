@@ -1,0 +1,18 @@
+{
+    "type": "bundle",
+    "id": "bundle--b80526d3-7080-4b57-8736-30ce013920d7",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d2c9b939-8c80-4080-94fb-4b7066e2821d",
+            "created": "2025-05-14T13:27:11.000Z",
+            "modified": "2025-05-14T13:27:11.000Z",
+            "name": "Test File Name Indicator",
+            "description": "Indicator for the presence of a file named 'eicar.com'.",
+            "pattern_type": "stix",
+            "pattern": "[file:name = 'eicar.com']",
+            "valid_from": "2025-05-14T13:27:11.000Z"
+        }
+    ]
+}
