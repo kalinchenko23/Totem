@@ -4,6 +4,13 @@
 
 ### compile
 
+**obtain adb hash**
+```bash
+sha256sum /usr/bin/adb | awk '{ print $1 }'
+```
+
+variable `const std::string EXPECTED_ADB_HASH` in cpp code should be set to output of adb hash
+
 **library requirements**
 ```bash
 sudo apt install -y libssl-dev libudev-dev

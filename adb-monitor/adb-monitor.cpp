@@ -20,7 +20,7 @@
 const std::string LOG_FILE = "/var/log/adb-monitor.log";
 const std::string VENDOR_CONF = "/etc/adb-monitor/vids.conf";
 const std::string ADB_PATH = "/usr/bin/adb";
-const std::string EXPECTED_ADB_HASH = "<INSERT_YOUR_SHA256_HASH_HERE>";
+const std::string EXPECTED_ADB_HASH = "fed574838c9b543c410679aeb898304a576139bd6820ec8e202fa34035324eff";
 const size_t MAX_TRIGGERS_PER_MINUTE = 5;
 
 bool running = true;
@@ -30,7 +30,9 @@ void log_event(const std::string& message) {
     std::ofstream log(LOG_FILE, std::ios::app);
     if (log.is_open()) {
         std::time_t now = std::time(nullptr);
-        log << "[" << std::ctime(&now) << "] " << message << std::endl;
+        std::string time_str = std::ctime(&now);
+        time_str.pop_back();
+        log << "[" << time_str << "] " << message << std::endl;
     }
 }
 
@@ -105,8 +107,17 @@ bool load_vendor_ids(const std::string& path, std::unordered_set<std::string>& o
 
     std::string line;
     while (std::getline(infile, line)) {
+        // Remove anything after '#'
+        size_t comment_pos = line.find('#');
+        if (comment_pos != std::string::npos) {
+            line = line.substr(0, comment_pos);
+        }
+
+        // Remove all whitespace from the line
         line.erase(remove_if(line.begin(), line.end(), ::isspace), line.end());
-        if (!line.empty() && line[0] != '#') {
+
+        // Skip empty lines
+        if (!line.empty()) {
             outSet.insert(line);
         }
     }
@@ -115,6 +126,13 @@ bool load_vendor_ids(const std::string& path, std::unordered_set<std::string>& o
 
 // Checks if any device is currently connected via ADB
 bool is_adb_device_connected() {
+    // Wait for ADB to detect a device (blocks until ready or fails)
+    int wait_result = system("timeout 30s /usr/bin/adb wait-for-device");
+    if (wait_result != 0) {
+        log_event("ADB wait-for-device failed or timed out.");
+        return false;
+    }
+
     FILE* pipe = popen("/usr/bin/adb devices", "r");
     if (!pipe) return false;
 
@@ -142,6 +160,59 @@ bool is_adb_device_connected() {
     return false;
 }
 
+void handle_usb_device(const std::string& actionStr,
+                       const std::string& vendorStr,
+                       const std::string& productStr,
+                       std::unordered_map<std::string, time_t>& lastSeen,
+                       const std::unordered_set<std::string>& vendorIDs,
+                       std::deque<time_t>& trigger_times) {
+
+    if (vendorStr.length() > 4 || productStr.length() > 4 ||
+        vendorStr.find_first_not_of("0123456789abcdefABCDEF") != std::string::npos ||
+        productStr.find_first_not_of("0123456789abcdefABCDEF") != std::string::npos)
+        return;
+
+    std::string key = vendorStr + ":" + productStr;
+    time_t now = std::time(nullptr);
+
+    if (lastSeen.find(key) != lastSeen.end() && now - lastSeen[key] < 5)
+        return;
+
+    lastSeen[key] = now;
+
+    bool isStartup = (actionStr == "startup");
+
+    if (vendorIDs.find(vendorStr) != vendorIDs.end()) {
+        log_event("Android USB " + (isStartup ? "device already connected at startup" : actionStr + " event detected"));
+
+        if (is_adb_device_connected()) {
+            log_event("ADB ACTIVE" + std::string(isStartup ? " at startup" : "") + ": Triggering script.");
+            trigger_times.push_back(now);
+
+            while (!trigger_times.empty() && now - trigger_times.front() > 60) {
+                trigger_times.pop_front();
+            }
+
+            if (trigger_times.size() <= MAX_TRIGGERS_PER_MINUTE) {
+                // checking adb instantiates server - blocking mvt
+                // attempt to kill existing adb server
+                system("/usr/bin/adb kill-server");
+                int result = system("/home/totem/mvt/bin/mvt-android check-adb");
+                if (result != 0) {
+                    log_event("Warning: Script exited with code " + std::to_string(result));
+                }
+            } else {
+                log_event("Rate limit exceeded: script not triggered.");
+            }
+        } else {
+            log_event("ADB NOT ACTIVE" + std::string(isStartup ? " at startup" : "") + ": Device connected without USB debugging.");
+        }
+    } else {
+        log_event((isStartup ? "Non-Android USB device already connected at startup"
+                             : "Non-Android USB " + actionStr + " event detected"));
+    }
+}
+
 // Main entry point of the program
 int main() {
     // Setup signal handlers
@@ -150,7 +221,7 @@ int main() {
 
     // Clear the log on startup
     std::ofstream clearLog(LOG_FILE, std::ios::trunc);
-    clearLog << "[" << ([](){ std::time_t now = std::time(nullptr); return std::ctime(&now); })() << "] Log cleared on startup." << std::endl;
+    log_event("Log cleared on startup.");
 
     // Verify ADB binary integrity
     if (!verify_adb_hash(EXPECTED_ADB_HASH)) {
@@ -180,74 +251,52 @@ int main() {
 
     std::unordered_map<std::string, time_t> lastSeen; // Tracks recently seen devices
     std::deque<time_t> trigger_times; // Tracks script trigger timestamps
+    
+    // Handle existing USB devices
+    struct udev_enumerate* enumerate = udev_enumerate_new(udev);
+    udev_enumerate_add_match_subsystem(enumerate, "usb");
+    udev_enumerate_scan_devices(enumerate);
+    struct udev_list_entry* devices = udev_enumerate_get_list_entry(enumerate);
+    struct udev_list_entry* dev_list_entry;
 
-    // Main monitoring loop
+    udev_list_entry_foreach(dev_list_entry, devices) {
+        const char* path = udev_list_entry_get_name(dev_list_entry);
+        struct udev_device* dev = udev_device_new_from_syspath(udev, path);
+        if (!dev) continue;
+
+        const char* vendor = udev_device_get_sysattr_value(dev, "idVendor");
+        const char* product = udev_device_get_sysattr_value(dev, "idProduct");
+
+        if (vendor && product) {
+            handle_usb_device("startup", vendor, product, lastSeen, vendorIDs, trigger_times);
+        }
+
+        udev_device_unref(dev);
+    }
+
+    udev_enumerate_unref(enumerate);
+
+    // Main event loop
     while (running) {
         fd_set fds;
         FD_ZERO(&fds);
         FD_SET(fd, &fds);
-        struct timeval timeout = {1, 0}; // 1-second timeout
+        struct timeval timeout = {1, 0};
 
         int ret = select(fd + 1, &fds, nullptr, nullptr, &timeout);
         if (ret > 0 && FD_ISSET(fd, &fds)) {
-            struct udev_device *dev = udev_monitor_receive_device(mon);
-            if (dev) {
-                const char* action = udev_device_get_action(dev);
-                const char* vendor = udev_device_get_sysattr_value(dev, "idVendor");
-                const char* product = udev_device_get_sysattr_value(dev, "idProduct");
+            struct udev_device* dev = udev_monitor_receive_device(mon);
+            if (!dev) continue;
 
-                if (action && vendor && product) {
-                    std::string vendorStr(vendor);
-                    std::string productStr(product);
-                    std::string actionStr(action);
-                    std::string key = vendorStr + ":" + productStr;
+            const char* action = udev_device_get_action(dev);
+            const char* vendor = udev_device_get_sysattr_value(dev, "idVendor");
+            const char* product = udev_device_get_sysattr_value(dev, "idProduct");
 
-                    // Basic validation of vendor/product IDs
-                    if (vendorStr.length() <= 4 && productStr.length() <= 4 &&
-                        vendorStr.find_first_not_of("0123456789abcdefABCDEF") == std::string::npos &&
-                        productStr.find_first_not_of("0123456789abcdefABCDEF") == std::string::npos) {
-
-                        time_t now = std::time(nullptr);
-
-                        // Skip repeated detections within 5 seconds
-                        if (lastSeen.find(key) != lastSeen.end() && now - lastSeen[key] < 5) {
-                            udev_device_unref(dev);
-                            continue;
-                        }
-                        lastSeen[key] = now;
-
-                        if (vendorIDs.find(vendorStr) != vendorIDs.end()) {
-                            log_event("Android USB " + actionStr + " event detected.");
-
-                            // If ADB is active, trigger the script
-                            if (is_adb_device_connected()) {
-                                trigger_times.push_back(now);
-
-                                // Clean up triggers older than 60 seconds
-                                while (!trigger_times.empty() && now - trigger_times.front() > 60) {
-                                    trigger_times.pop_front();
-                                }
-
-                                // Enforce trigger rate limit
-                                if (trigger_times.size() <= MAX_TRIGGERS_PER_MINUTE) {
-                                    log_event("ADB ACTIVE: Triggering script.");
-                                    int result = system("/usr/local/bin/placeholder.sh");
-                                    if (result != 0) {
-                                        log_event("Warning: Script exited with code " + std::to_string(result));
-                                    }
-                                } else {
-                                    log_event("Rate limit exceeded: script not triggered.");
-                                }
-                            } else {
-                                log_event("ADB NOT ACTIVE: Device connected without USB debugging.");
-                            }
-                        } else {
-                            log_event("Non-Android USB " + actionStr + " event detected.");
-                        }
-                    }
-                }
-                udev_device_unref(dev);
+            if (action && vendor && product) {
+                handle_usb_device(action, vendor, product, lastSeen, vendorIDs, trigger_times);
             }
+
+            udev_device_unref(dev);
         }
     }
 
