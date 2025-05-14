@@ -1,6 +1,6 @@
 # Custom Indicators of Compromise (IOCs)
 
-This document outlines the Indicators of Compromise (IOCs) in the `custom_iocs` folder. These IOCs are intended for use with tools like the Mobile Verification Toolkit (MVT) for testing and presentation.
+This document outlines the Indicators of Compromise (IOCs) in the `custom_iocs` folder. These IOCs are intended for use with the Mobile Verification Toolkit (MVT) for testing and presentation.
 
 ## IOC Files
 
