@@ -1,5 +1,15 @@
 # ADB Monitor Service
 
+## totem setup
+
+### increase virtual memory
+
+```bash
+# /etc/dphys-swapfile
+CONF_SWAPSIZE=4096 # increase to 4GBs
+```
+
+
 ## service setup
 
 ### compile
@@ -65,6 +75,7 @@ sudo usermod -aG plugdev adbmonitor
 **systemd unit configuration**
 
 ```ini
+# /etc/systemd/system/adbmonitor.service
 [Unit]
 Description=ADB Monitor
 After=network.target
@@ -85,6 +96,6 @@ WantedBy=multi-user.target
 **configured service**
 ```bash
 sudo systemctl daemon-reexec
-sudo systemctl enable adb-monitor
-sudo system start adb-monitor
+sudo systemctl enable adbmonitor
+sudo system start adbmonitor
 ```

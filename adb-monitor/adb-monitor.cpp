@@ -16,6 +16,7 @@
 #include <sys/stat.h>
 #include <openssl/evp.h>
 #include <algorithm>
+#include <thread>
 
 const std::string LOG_FILE = "/var/log/adb-monitor.log";
 const std::string VENDOR_CONF = "/etc/adb-monitor/vids.conf";
@@ -201,6 +202,7 @@ void handle_usb_device(const std::string& actionStr,
                 if (result != 0) {
                     log_event("Warning: Script exited with code " + std::to_string(result));
                 }
+                std::this_thread::sleep_for(std::chrono::seconds(60))
             } else {
                 log_event("Rate limit exceeded: script not triggered.");
             }
