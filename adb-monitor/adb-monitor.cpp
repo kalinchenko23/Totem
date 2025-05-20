@@ -198,11 +198,11 @@ void handle_usb_device(const std::string& actionStr,
                 // checking adb instantiates server - blocking mvt
                 // attempt to kill existing adb server
                 system("/usr/bin/adb kill-server");
-                int result = system("/home/totem/mvt/bin/mvt-android check-adb");
+                int result = system("python /home/totem/Totem/adb-monitor/scan.py");
                 if (result != 0) {
                     log_event("Warning: Script exited with code " + std::to_string(result));
                 }
-                std::this_thread::sleep_for(std::chrono::seconds(60))
+                std::this_thread::sleep_for(std::chrono::seconds(60));
             } else {
                 log_event("Rate limit exceeded: script not triggered.");
             }
