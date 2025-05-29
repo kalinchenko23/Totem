@@ -56,6 +56,14 @@ if ! dpkg -s "$UDEV_PACKAGE" >/dev/null 2>&1; then
     echo "[+] Installed C++ package: ${UDEV_PACKAGE}"
 fi
 
+# check python mvt
+MVT_PATH="/usr/local/bin/mvt-android"
+
+if ! [ -f "$MVT_PATH" ]; then
+    pip install mvt --break-system-packages > /dev/null 2>&1
+    echo "[+] Installed MVT python package"
+fi
+
 ###########################
 # 01 - Build Service Binary
 ###########################
@@ -150,7 +158,7 @@ echo "[+] Configured monitor service udev access"
 # Configured daemon file
 mv "$SVC_FILE" "/etc/systemd/system/"
 systemctl daemon-reexec
-systemctl enable $SVC_NAME
+systemctl enable $SVC_NAME > /dev/null 2>&1
 systemctl start $SVC_NAME
 echo "[+] Systemd service created, enabled, and started"
 
