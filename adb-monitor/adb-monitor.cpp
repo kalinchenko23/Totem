@@ -21,7 +21,7 @@
 const std::string LOG_FILE = "/var/log/adb-monitor.log";
 const std::string VENDOR_CONF = "/etc/adb-monitor/vids.conf";
 const std::string ADB_PATH = "/usr/bin/adb";
-const std::string EXPECTED_ADB_HASH = "fed574838c9b543c410679aeb898304a576139bd6820ec8e202fa34035324eff";
+const std::string EXPECTED_ADB_HASH = "<INSERT_SHA256_HASH_HERE>";
 const size_t MAX_TRIGGERS_PER_MINUTE = 5;
 
 bool running = true;
@@ -198,7 +198,7 @@ void handle_usb_device(const std::string& actionStr,
                 // checking adb instantiates server - blocking mvt
                 // attempt to kill existing adb server
                 system("/usr/bin/adb kill-server");
-                int result = system("python /home/totem/Totem/adb-monitor/scan.py");
+                int result = system("/usr/local/bin/mvt-scan.py");
                 if (result != 0) {
                     log_event("Warning: Script exited with code " + std::to_string(result));
                 }

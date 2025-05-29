@@ -1,0 +1,16 @@
+# /etc/systemd/system/adbmonitor.service
+[Unit]
+Description=ADB Monitor
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/adb-monitor
+User=adbmonitor
+Group=adbmonitor
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
