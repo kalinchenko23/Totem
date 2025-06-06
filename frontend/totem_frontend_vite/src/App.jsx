@@ -1,8 +1,8 @@
 import './App.css';
 import SpotlightCard from './components/SpotlightCard';
-import image1 from '../public/image1.png';
-import image2 from '../public/image2.png';
-import image3 from '../public/image3.png';
+import image1 from '/image1.png';
+import image2 from '/image2.png';
+import image3 from '/image3.png';
 import GradientText from './components/GradientText';
 import Folder from './components/Folder';
 import ScrollVelocity from './components/ScrollVelocity';
@@ -49,7 +49,7 @@ import LightSignalTable from './components/LightSignalTable';
             <div className="text-style" style={{ color: 'white' /* Assuming white text from previous context */ }}>
   We created our digital forensics device with one clear goal: make advanced cybersecurity tools accessible to everyone. Traditional forensics solutions are often complex, technical, and intimidating. We wanted to change that. Our device is designed to be simple, intuitive, and effective. With just connecting a phone, it scans, analyzes, and communicates the results clearly using a universally understood system of lights.
         </div>
-           <ScrollableScene modelUrl="../../public/sather-cover.glb" />
+           <ScrollableScene modelUrl="/sather-cover.glb" />
           
         </SpotlightCard>
         <div>
@@ -274,7 +274,7 @@ import LightSignalTable from './components/LightSignalTable';
 
                    <div style={{ textAlign: 'center', transform: 'translateX(0px)' }}>
                           <img
-                            src={'public/University_of_California_Logo.png'}
+                            src={'/University_of_California_Logo.png'}
                             alt="Let there be light" // More descriptive alt text
                             style={{ maxWidth: '100%', maxHeight: '400px', height: '300px' }} // Set height to auto for aspect ratio
                           />
