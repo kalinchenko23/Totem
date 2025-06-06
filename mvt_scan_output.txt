@@ -1,0 +1,456 @@
+[+] 2025-05-20_09-45-57 MVT scan complete. Output saved to /home/kalina/Totem/adb-monitor/mvt_scan_output.txt
+
+
+        MVT - Mobile Verification Toolkit
+                https://mvt.re
+                Version: 2.6.0
+                Indicators updates checked recently, next automatic check in 1 hours
+
+
+22:27:10 INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path ./custom_iocs/custom_ioc1.stix2                                             
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path ./custom_iocs/custom_ioc2.stix2                                             
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_intellexa_predator_predator.stix2                            
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_2023-04-11_quadream_kingspawn.stix2                          
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AmnestyTech_investigations_master_2024-12-16_serbia_novispy_novispy.stix2                    
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AmnestyTech_investigations_master_2024-05-02_wintego_helios_wintego_helios.stix2             
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_2022-06-23_rcs_lab_rcs.stix2                                 
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AssoEchap_stalkerware-indicators_master_generated_stalkerware.stix2                          
+22:27:11 INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_2023-07-25_wyrmspy_dragonegg_wyrmspy_dragonegg.stix2         
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AmnestyTech_investigations_master_2021-07-18_nso_pegasus.stix2                               
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_2023-06_01_operation_triangulation_operation_triangulation.st
+                  ix2                                                                                                                                           
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AmnestyTech_investigations_master_2023-03-29_android_campaign_malware.stix2                  
+         INFO     [mvt.android.cmd_check_adb] Loaded a total of 10715 unique indicators                                                                         
+         INFO     [mvt] Checking Android device over debug bridge                                                                                               
+         INFO     [mvt.android.modules.adb.chrome_history] Running module ChromeHistory...                                                                      
+         ERROR    [mvt.android.modules.adb.chrome_history] This module is optionally available in case the device is already rooted. Do NOT root your own       
+                  device!                                                                                                                                       
+         INFO     [mvt.android.modules.adb.chrome_history] The ChromeHistory module produced no detections!                                                     
+         INFO     [mvt.android.modules.adb.sms] Running module SMS...                                                                                           
+         INFO     [mvt.android.modules.adb.sms] No SMS database found. Trying extraction of SMS data using Android backup feature.                              
+         INFO     [mvt.android.modules.adb.sms] Please check phone and accept Android backup prompt. You may need to set a backup password.                     
+22:27:16 ERROR    [mvt.android.modules.adb.sms] Extracting SMS via Android backup failed. No valid backup data found.                                           
+         INFO     [mvt.android.modules.adb.sms] The SMS module produced no detections!                                                                          
+         INFO     [mvt.android.modules.adb.whatsapp] Running module Whatsapp...                                                                                 
+         ERROR    [mvt.android.modules.adb.whatsapp] This module is optionally available in case the device is already rooted. Do NOT root your own device!     
+         INFO     [mvt.android.modules.adb.whatsapp] The Whatsapp module produced no detections!                                                                
+         INFO     [mvt.android.modules.adb.processes] Running module Processes...                                                                               
+         INFO     [mvt.android.modules.adb.processes] Extracted records on a total of 530 processes                                                             
+         INFO     [mvt.android.modules.adb.processes] The Processes module produced no detections!                                                              
+         INFO     [mvt.android.modules.adb.getprop] Running module Getprop...                                                                                   
+         INFO     [mvt.android.modules.adb.getprop] Extracted 1031 Android system properties                                                                    
+         INFO     [mvt.android.modules.adb.getprop] persist.sys.timezone: America/New_York                                                                      
+         INFO     [mvt.android.modules.adb.getprop] ro.boot.serialno: VOXCZL7H59MNMVKV                                                                          
+         INFO     [mvt.android.modules.adb.getprop] ro.build.version.sdk: 30                                                                                    
+         INFO     [mvt.android.modules.adb.getprop] ro.build.version.security_patch: 2023-06-01                                                                 
+         WARNING  [mvt.android.modules.adb.getprop] This phone has not received security updates for more than six months (last update: 2023-06-01)             
+         INFO     [mvt.android.modules.adb.getprop] ro.product.cpu.abi: arm64-v8a                                                                               
+         INFO     [mvt.android.modules.adb.getprop] ro.product.locale: en-US                                                                                    
+         INFO     [mvt.android.modules.adb.getprop] ro.product.vendor.manufacturer: TCL                                                                         
+         INFO     [mvt.android.modules.adb.getprop] ro.product.vendor.model: A509DL                                                                             
+         INFO     [mvt.android.modules.adb.getprop] ro.product.vendor.name: A509DL                                                                              
+         INFO     [mvt.android.modules.adb.getprop] The Getprop module produced no detections!                                                                  
+         INFO     [mvt.android.modules.adb.settings] Running module Settings...                                                                                 
+         WARNING  [mvt.android.modules.adb.settings] Found suspicious "secure" setting "install_non_market_apps = 1" (enabled installation of non Google Play   
+                  apps)                                                                                                                                         
+         INFO     [mvt.android.modules.adb.settings] The Settings module produced no detections!                                                                
+         INFO     [mvt.android.modules.adb.selinux_status] Running module SELinuxStatus...                                                                      
+         INFO     [mvt.android.modules.adb.selinux_status] SELinux is being regularly enforced                                                                  
+         INFO     [mvt.android.modules.adb.selinux_status] The SELinuxStatus module does not support checking for indicators                                    
+         INFO     [mvt.android.modules.adb.dumpsys_battery_history] Running module DumpsysBatteryHistory...                                                     
+22:27:17 INFO     [mvt.android.modules.adb.dumpsys_battery_history] Extracted 16 records from battery history                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_battery_history] The DumpsysBatteryHistory module produced no detections!                                    
+         INFO     [mvt.android.modules.adb.dumpsys_battery_daily] Running module DumpsysBatteryDaily...                                                         
+         INFO     [mvt.android.modules.adb.dumpsys_battery_daily] Extracted 33 records from battery daily stats                                                 
+         INFO     [mvt.android.modules.adb.dumpsys_battery_daily] The DumpsysBatteryDaily module produced no detections!                                        
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Running module DumpsysReceivers...                                                                
+22:27:20 INFO     [mvt.android.modules.adb.dumpsys_receivers] Extracted receivers for 1045 intents                                                              
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver monitoring telephony state/incoming calls:                                       
+                  "com.facebook.katana/com.facebook.clicktocall.CTCPhoneCallBroadcastReceiver"                                                                  
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver monitoring telephony state/incoming calls:                                       
+                  "com.tracfone.preload.accountservices/com.tracfone.devicepulse_commonui.DefaultBroadcastReceiver"                                             
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver monitoring telephony state/incoming calls:                                       
+                  "com.facebook.katana/com.facebook.clicktocall.LeadAdsP2BCallStateChangeReceiver"                                                              
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver to intercept incoming SMS messages:                                              
+                  "com.google.android.apps.messaging/.shared.receiver.ConfigSmsReceiver"                                                                        
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver to intercept incoming SMS messages:                                              
+                  "com.google.android.apps.messaging/.shared.receiver.SmsReceiver"                                                                              
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver to intercept incoming SMS messages: "com.tct.voicemail/.provider.VVMReceiver"    
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver monitoring outgoing calls:                                                       
+                  "com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver"                                                         
+         INFO     [mvt.android.modules.adb.dumpsys_activities] Running module DumpsysActivities...                                                              
+22:27:21 INFO     [mvt.android.modules.adb.dumpsys_activities] Extracted 1741 package activities                                                                
+22:27:22 WARNING  [mvt.android.modules.adb.dumpsys_activities] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default 
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_activities] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default 
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_accessibility] Running module DumpsysAccessibility...                                                        
+         INFO     [mvt.android.modules.adb.dumpsys_accessibility] Identified a total of 0 accessibility services                                                
+         INFO     [mvt.android.modules.adb.dumpsys_accessibility] The DumpsysAccessibility module produced no detections!                                       
+         INFO     [mvt.android.modules.adb.dumpsys_dbinfo] Running module DumpsysDBInfo...                                                                      
+         INFO     [mvt.android.modules.adb.dumpsys_dbinfo] Extracted a total of 0 records from database information                                             
+         INFO     [mvt.android.modules.adb.dumpsys_dbinfo] The DumpsysDBInfo module produced no detections!                                                     
+         INFO     [mvt.android.modules.adb.dumpsys_adbstate] Running module DumpsysADBState...                                                                  
+         ERROR    [mvt.android.modules.adb.dumpsys_adbstate] Error in running extraction from module DumpsysADBState: list index out of range                   
+                  Traceback (most recent call last):                                                                                                            
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/common/module.py", line 167, in run_module                                   
+                      exec_or_profile("module.run()", globals(), locals())                                                                                      
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                                                      
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/common/utils.py", line 262, in exec_or_profile                               
+                      exec(module, globals, locals)                                                                                                             
+                      ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^                                                                                                             
+                    File "<string>", line 1, in <module>                                                                                                        
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/android/modules/adb/dumpsys_adbstate.py", line 40, in run                    
+                      self.parse(output)                                                                                                                        
+                      ~~~~~~~~~~^^^^^^^^                                                                                                                        
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/android/artifacts/dumpsys_adb.py", line 114, in parse                        
+                      parsed = self.indented_dump_parser(json_content)                                                                                          
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/android/artifacts/dumpsys_adb.py", line 52, in indented_dump_parser          
+                      if vals[1] == b"{":                                                                                                                       
+                         ~~~~^^^                                                                                                                                
+                  IndexError: list index out of range                                                                                                           
+         INFO     [mvt.android.modules.adb.dumpsys_full] Running module DumpsysFull...                                                                          
+22:27:39 INFO     [mvt.android.modules.adb.dumpsys_full] The DumpsysFull module does not support checking for indicators                                        
+         INFO     [mvt.android.modules.adb.dumpsys_appops] Running module DumpsysAppOps...                                                                      
+         INFO     [mvt.android.modules.adb.dumpsys_appops] Extracted a total of 56 records from app-ops manager                                                 
+         INFO     [mvt.android.modules.adb.dumpsys_appops] The DumpsysAppOps module produced no detections!                                                     
+         INFO     [mvt.android.modules.adb.packages] Running module Packages...                                                                                 
+22:30:37 INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.subscriptions.red" installed by "None" on      
+                  2008-12-31 19:00:00                                                                                                                           
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.tracfone.generic.mysites" installed by "com.dti.tracfone" on       
+                  2025-05-14 10:36:26                                                                                                                           
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.googleassistant" installed by "None" on        
+                  2008-12-31 19:00:00                                                                                                                           
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.vitastudio.mahjong" installed by "com.dti.tracfone" on 2025-05-14  
+                  10:46:27                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.podcasts" installed by "None" on 2008-12-31    
+                  19:00:00                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.bubbleshooter.popbubbles.collectcards" installed by                
+                  "com.dti.tracfone" on 2025-05-14 10:51:09                                                                                                     
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.huub.tiger" installed by "com.dti.tracfone" on 2025-05-14 10:33:12 
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.pinterest" installed by "com.dti.tracfone" on 2025-05-14 10:59:01  
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.tachyon" installed by "None" on 2008-12-31     
+                  19:00:00                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.block.juggle" installed by "com.dti.tracfone" on 2025-05-14        
+                  10:49:54                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.squareup.cash" installed by "com.dti.tracfone" on 2025-05-14       
+                  10:57:17                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.dti.folderlauncher" installed by "com.dti.tracfone" on 2025-05-14  
+                  10:32:32                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.docs" installed by "None" on 2008-12-31        
+                  19:00:00                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.pandora.android" installed by "com.dti.tracfone" on 2025-05-14     
+                  10:59:58                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.soulcompany.bubbleshooter.relaxing" installed by "com.dti.tracfone"
+                  on 2025-05-14 11:01:11                                                                                                                        
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.videos" installed by "None" on 2008-12-31 19:00:00  
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.zhiliaoapp.musically" installed by "com.dti.tracfone" on 2025-05-14
+                  10:56:20                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.mobilityware.solitaire" installed by "com.dti.tracfone" on         
+                  2025-05-14 10:43:51                                                                                                                           
+Looking up 44 files...                                            0% -:--:--
+         INFO     [mvt.android.modules.adb.packages] Extracted at total of 292 installed package names                                                          
+         WARNING  [mvt.android.modules.adb.packages] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default           
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.logcat] Running module Logcat...                                                                                     
+22:30:38 INFO     [mvt.android.modules.adb.logcat] The Logcat module does not support checking for indicators                                                   
+         INFO     [mvt.android.modules.adb.root_binaries] Running module RootBinaries...                                                                        
+         INFO     [mvt.android.modules.adb.root_binaries] The RootBinaries module produced no detections!                                                       
+         INFO     [mvt.android.modules.adb.files] Running module Files...                                                                                       
+22:30:39 INFO     [mvt.android.modules.adb.files] Found 82 files in primary Android tmp and media folders                                                       
+         INFO     [mvt.android.modules.adb.files] Processing full file listing. This may take a while...                                                        
+22:31:04 INFO     [mvt.android.modules.adb.files] Found 180361 total files                                                                                      
+         WARNING  [mvt.android.modules.adb.files] Found a known suspicious file name "eicar.com" matching indicators from "Default collection"                  
+         WARNING  [mvt.android.modules.adb.files] Found a known suspicous file at path: "/sdcard/eicar.com"                                                     
+22:31:07 INFO     [mvt.android.cmd_check_adb] Please disable Developer Options and ADB (Android Debug Bridge) on the device once finished with the acquisition. 
+                  ADB is a powerful tool which can allow unauthorized access to the device.                                                                     
+         WARNING   NOTE: Detected indicators of compromise. Only expert review can confirm if the detected indicators are signs of an attack.                   
+                                                                                                                                                                
+                  Please seek reputable expert help if you have serious concerns about a possible spyware attack. Such support is available to human rights     
+                  defenders and civil society through Amnesty International's Security Lab at https://securitylab.amnesty.org/get-help/?c=mvt                   
+         WARNING  [mvt] The analysis of the Android device produced 27 detections!   
+
+[✓] 2025-05-20_09-45-57 No detection messages found.
+cat mvt_scan_output.txt 
+
+
+        MVT - Mobile Verification Toolkit
+                https://mvt.re
+                Version: 2.6.0
+                Indicators updates checked recently, next automatic check in 1 hours
+
+
+22:27:10 INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path ./custom_iocs/custom_ioc1.stix2                                             
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path ./custom_iocs/custom_ioc2.stix2                                             
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_intellexa_predator_predator.stix2                            
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_2023-04-11_quadream_kingspawn.stix2                          
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AmnestyTech_investigations_master_2024-12-16_serbia_novispy_novispy.stix2                    
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AmnestyTech_investigations_master_2024-05-02_wintego_helios_wintego_helios.stix2             
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_2022-06-23_rcs_lab_rcs.stix2                                 
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AssoEchap_stalkerware-indicators_master_generated_stalkerware.stix2                          
+22:27:11 INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_2023-07-25_wyrmspy_dragonegg_wyrmspy_dragonegg.stix2         
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AmnestyTech_investigations_master_2021-07-18_nso_pegasus.stix2                               
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_mvt-project_mvt-indicators_main_2023-06_01_operation_triangulation_operation_triangulation.st
+                  ix2                                                                                                                                           
+         INFO     [mvt.android.cmd_check_adb] Parsing STIX2 indicators file at path /Users/maxkalinchenko/Library/Application                                   
+                  Support/mvt/indicators/raw.githubusercontent.com_AmnestyTech_investigations_master_2023-03-29_android_campaign_malware.stix2                  
+         INFO     [mvt.android.cmd_check_adb] Loaded a total of 10715 unique indicators                                                                         
+         INFO     [mvt] Checking Android device over debug bridge                                                                                               
+         INFO     [mvt.android.modules.adb.chrome_history] Running module ChromeHistory...                                                                      
+         ERROR    [mvt.android.modules.adb.chrome_history] This module is optionally available in case the device is already rooted. Do NOT root your own       
+                  device!                                                                                                                                       
+         INFO     [mvt.android.modules.adb.chrome_history] The ChromeHistory module produced no detections!                                                     
+         INFO     [mvt.android.modules.adb.sms] Running module SMS...                                                                                           
+         INFO     [mvt.android.modules.adb.sms] No SMS database found. Trying extraction of SMS data using Android backup feature.                              
+         INFO     [mvt.android.modules.adb.sms] Please check phone and accept Android backup prompt. You may need to set a backup password.                     
+22:27:16 ERROR    [mvt.android.modules.adb.sms] Extracting SMS via Android backup failed. No valid backup data found.                                           
+         INFO     [mvt.android.modules.adb.sms] The SMS module produced no detections!                                                                          
+         INFO     [mvt.android.modules.adb.whatsapp] Running module Whatsapp...                                                                                 
+         ERROR    [mvt.android.modules.adb.whatsapp] This module is optionally available in case the device is already rooted. Do NOT root your own device!     
+         INFO     [mvt.android.modules.adb.whatsapp] The Whatsapp module produced no detections!                                                                
+         INFO     [mvt.android.modules.adb.processes] Running module Processes...                                                                               
+         INFO     [mvt.android.modules.adb.processes] Extracted records on a total of 530 processes                                                             
+         INFO     [mvt.android.modules.adb.processes] The Processes module produced no detections!                                                              
+         INFO     [mvt.android.modules.adb.getprop] Running module Getprop...                                                                                   
+         INFO     [mvt.android.modules.adb.getprop] Extracted 1031 Android system properties                                                                    
+         INFO     [mvt.android.modules.adb.getprop] persist.sys.timezone: America/New_York                                                                      
+         INFO     [mvt.android.modules.adb.getprop] ro.boot.serialno: VOXCZL7H59MNMVKV                                                                          
+         INFO     [mvt.android.modules.adb.getprop] ro.build.version.sdk: 30                                                                                    
+         INFO     [mvt.android.modules.adb.getprop] ro.build.version.security_patch: 2023-06-01                                                                 
+         WARNING  [mvt.android.modules.adb.getprop] This phone has not received security updates for more than six months (last update: 2023-06-01)             
+         INFO     [mvt.android.modules.adb.getprop] ro.product.cpu.abi: arm64-v8a                                                                               
+         INFO     [mvt.android.modules.adb.getprop] ro.product.locale: en-US                                                                                    
+         INFO     [mvt.android.modules.adb.getprop] ro.product.vendor.manufacturer: TCL                                                                         
+         INFO     [mvt.android.modules.adb.getprop] ro.product.vendor.model: A509DL                                                                             
+         INFO     [mvt.android.modules.adb.getprop] ro.product.vendor.name: A509DL                                                                              
+         INFO     [mvt.android.modules.adb.getprop] The Getprop module produced no detections!                                                                  
+         INFO     [mvt.android.modules.adb.settings] Running module Settings...                                                                                 
+         WARNING  [mvt.android.modules.adb.settings] Found suspicious "secure" setting "install_non_market_apps = 1" (enabled installation of non Google Play   
+                  apps)                                                                                                                                         
+         INFO     [mvt.android.modules.adb.settings] The Settings module produced no detections!                                                                
+         INFO     [mvt.android.modules.adb.selinux_status] Running module SELinuxStatus...                                                                      
+         INFO     [mvt.android.modules.adb.selinux_status] SELinux is being regularly enforced                                                                  
+         INFO     [mvt.android.modules.adb.selinux_status] The SELinuxStatus module does not support checking for indicators                                    
+         INFO     [mvt.android.modules.adb.dumpsys_battery_history] Running module DumpsysBatteryHistory...                                                     
+22:27:17 INFO     [mvt.android.modules.adb.dumpsys_battery_history] Extracted 16 records from battery history                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_battery_history] The DumpsysBatteryHistory module produced no detections!                                    
+         INFO     [mvt.android.modules.adb.dumpsys_battery_daily] Running module DumpsysBatteryDaily...                                                         
+         INFO     [mvt.android.modules.adb.dumpsys_battery_daily] Extracted 33 records from battery daily stats                                                 
+         INFO     [mvt.android.modules.adb.dumpsys_battery_daily] The DumpsysBatteryDaily module produced no detections!                                        
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Running module DumpsysReceivers...                                                                
+22:27:20 INFO     [mvt.android.modules.adb.dumpsys_receivers] Extracted receivers for 1045 intents                                                              
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver monitoring telephony state/incoming calls:                                       
+                  "com.facebook.katana/com.facebook.clicktocall.CTCPhoneCallBroadcastReceiver"                                                                  
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver monitoring telephony state/incoming calls:                                       
+                  "com.tracfone.preload.accountservices/com.tracfone.devicepulse_commonui.DefaultBroadcastReceiver"                                             
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver monitoring telephony state/incoming calls:                                       
+                  "com.facebook.katana/com.facebook.clicktocall.LeadAdsP2BCallStateChangeReceiver"                                                              
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver to intercept incoming SMS messages:                                              
+                  "com.google.android.apps.messaging/.shared.receiver.ConfigSmsReceiver"                                                                        
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver to intercept incoming SMS messages:                                              
+                  "com.google.android.apps.messaging/.shared.receiver.SmsReceiver"                                                                              
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver to intercept incoming SMS messages: "com.tct.voicemail/.provider.VVMReceiver"    
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_receivers] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default  
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_receivers] Found a receiver monitoring outgoing calls:                                                       
+                  "com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver"                                                         
+         INFO     [mvt.android.modules.adb.dumpsys_activities] Running module DumpsysActivities...                                                              
+22:27:21 INFO     [mvt.android.modules.adb.dumpsys_activities] Extracted 1741 package activities                                                                
+22:27:22 WARNING  [mvt.android.modules.adb.dumpsys_activities] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default 
+                  collection"                                                                                                                                   
+         WARNING  [mvt.android.modules.adb.dumpsys_activities] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default 
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.dumpsys_accessibility] Running module DumpsysAccessibility...                                                        
+         INFO     [mvt.android.modules.adb.dumpsys_accessibility] Identified a total of 0 accessibility services                                                
+         INFO     [mvt.android.modules.adb.dumpsys_accessibility] The DumpsysAccessibility module produced no detections!                                       
+         INFO     [mvt.android.modules.adb.dumpsys_dbinfo] Running module DumpsysDBInfo...                                                                      
+         INFO     [mvt.android.modules.adb.dumpsys_dbinfo] Extracted a total of 0 records from database information                                             
+         INFO     [mvt.android.modules.adb.dumpsys_dbinfo] The DumpsysDBInfo module produced no detections!                                                     
+         INFO     [mvt.android.modules.adb.dumpsys_adbstate] Running module DumpsysADBState...                                                                  
+         ERROR    [mvt.android.modules.adb.dumpsys_adbstate] Error in running extraction from module DumpsysADBState: list index out of range                   
+                  Traceback (most recent call last):                                                                                                            
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/common/module.py", line 167, in run_module                                   
+                      exec_or_profile("module.run()", globals(), locals())                                                                                      
+                      ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                                                                      
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/common/utils.py", line 262, in exec_or_profile                               
+                      exec(module, globals, locals)                                                                                                             
+                      ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^                                                                                                             
+                    File "<string>", line 1, in <module>                                                                                                        
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/android/modules/adb/dumpsys_adbstate.py", line 40, in run                    
+                      self.parse(output)                                                                                                                        
+                      ~~~~~~~~~~^^^^^^^^                                                                                                                        
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/android/artifacts/dumpsys_adb.py", line 114, in parse                        
+                      parsed = self.indented_dump_parser(json_content)                                                                                          
+                    File "/opt/anaconda3/envs/mvt/lib/python3.13/site-packages/mvt/android/artifacts/dumpsys_adb.py", line 52, in indented_dump_parser          
+                      if vals[1] == b"{":                                                                                                                       
+                         ~~~~^^^                                                                                                                                
+                  IndexError: list index out of range                                                                                                           
+         INFO     [mvt.android.modules.adb.dumpsys_full] Running module DumpsysFull...                                                                          
+22:27:39 INFO     [mvt.android.modules.adb.dumpsys_full] The DumpsysFull module does not support checking for indicators                                        
+         INFO     [mvt.android.modules.adb.dumpsys_appops] Running module DumpsysAppOps...                                                                      
+         INFO     [mvt.android.modules.adb.dumpsys_appops] Extracted a total of 56 records from app-ops manager                                                 
+         INFO     [mvt.android.modules.adb.dumpsys_appops] The DumpsysAppOps module produced no detections!                                                     
+         INFO     [mvt.android.modules.adb.packages] Running module Packages...                                                                                 
+22:30:37 INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.subscriptions.red" installed by "None" on      
+                  2008-12-31 19:00:00                                                                                                                           
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.tracfone.generic.mysites" installed by "com.dti.tracfone" on       
+                  2025-05-14 10:36:26                                                                                                                           
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.googleassistant" installed by "None" on        
+                  2008-12-31 19:00:00                                                                                                                           
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.vitastudio.mahjong" installed by "com.dti.tracfone" on 2025-05-14  
+                  10:46:27                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.podcasts" installed by "None" on 2008-12-31    
+                  19:00:00                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.bubbleshooter.popbubbles.collectcards" installed by                
+                  "com.dti.tracfone" on 2025-05-14 10:51:09                                                                                                     
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.huub.tiger" installed by "com.dti.tracfone" on 2025-05-14 10:33:12 
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.pinterest" installed by "com.dti.tracfone" on 2025-05-14 10:59:01  
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.tachyon" installed by "None" on 2008-12-31     
+                  19:00:00                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.block.juggle" installed by "com.dti.tracfone" on 2025-05-14        
+                  10:49:54                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.squareup.cash" installed by "com.dti.tracfone" on 2025-05-14       
+                  10:57:17                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.dti.folderlauncher" installed by "com.dti.tracfone" on 2025-05-14  
+                  10:32:32                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.apps.docs" installed by "None" on 2008-12-31        
+                  19:00:00                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.pandora.android" installed by "com.dti.tracfone" on 2025-05-14     
+                  10:59:58                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.soulcompany.bubbleshooter.relaxing" installed by "com.dti.tracfone"
+                  on 2025-05-14 11:01:11                                                                                                                        
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.google.android.videos" installed by "None" on 2008-12-31 19:00:00  
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.zhiliaoapp.musically" installed by "com.dti.tracfone" on 2025-05-14
+                  10:56:20                                                                                                                                      
+         INFO     [mvt.android.modules.adb.packages] Found non-system package with name "com.mobilityware.solitaire" installed by "com.dti.tracfone" on         
+                  2025-05-14 10:43:51                                                                                                                           
+Looking up 44 files...                                            0% -:--:--
+         INFO     [mvt.android.modules.adb.packages] Extracted at total of 292 installed package names                                                          
+         WARNING  [mvt.android.modules.adb.packages] Found a known suspicious app with ID "com.facebook.appmanager" matching indicators from "Default           
+                  collection"                                                                                                                                   
+         INFO     [mvt.android.modules.adb.logcat] Running module Logcat...                                                                                     
+22:30:38 INFO     [mvt.android.modules.adb.logcat] The Logcat module does not support checking for indicators                                                   
+         INFO     [mvt.android.modules.adb.root_binaries] Running module RootBinaries...                                                                        
+         INFO     [mvt.android.modules.adb.root_binaries] The RootBinaries module produced no detections!                                                       
+         INFO     [mvt.android.modules.adb.files] Running module Files...                                                                                       
+22:30:39 INFO     [mvt.android.modules.adb.files] Found 82 files in primary Android tmp and media folders                                                       
+         INFO     [mvt.android.modules.adb.files] Processing full file listing. This may take a while...                                                        
+22:31:04 INFO     [mvt.android.modules.adb.files] Found 180361 total files                                                                                      
+         WARNING  [mvt.android.modules.adb.files] Found a known suspicious file name "eicar.com" matching indicators from "Default collection"                  
+         WARNING  [mvt.android.modules.adb.files] Found a known suspicous file at path: "/sdcard/eicar.com"                                                     
+22:31:07 INFO     [mvt.android.cmd_check_adb] Please disable Developer Options and ADB (Android Debug Bridge) on the device once finished with the acquisition. 
+                  ADB is a powerful tool which can allow unauthorized access to the device.                                                                     
+         WARNING   NOTE: Detected indicators of compromise. Only expert review can confirm if the detected indicators are signs of an attack.                   
+                                                                                                                                                                
+                  Please seek reputable expert help if you have serious concerns about a possible spyware attack. Such support is available to human rights     
+                  defenders and civil society through Amnesty International's Security Lab at https://securitylab.amnesty.org/get-help/?c=mvt                   
+         WARNING  [mvt] The analysis of the Android device produced 27 detections!  

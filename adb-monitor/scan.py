@@ -3,7 +3,7 @@ from datetime import datetime
 import re
 
 # Output file
-output_file = f"/home/totem/Totem/adb-monitor/mvt_scan_output.txt"
+output_file = "/home/totem/Totem/adb-monitor/mvt_scan_output.txt"
 
 # Command to run the MVT scan that includes custom IOCs
 mvt_command = ["/home/totem/mvt/bin/mvt-android", "check-adb", "--iocs", "/home/totem/Totem/custom_iocs/custom_ioc1.stix2", "--iocs", "/home/totem/Totem/custom_iocs/custom_ioc2.stix2"]

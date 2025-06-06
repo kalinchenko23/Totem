@@ -1,0 +1,305 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Dark Mode Styles */
+:root {
+  --bg-color: black;
+  --text-color: #181515;
+  --accent-color: #1e90ff;
+  --card-bg: #1a1a1a;
+  --card-border: #333;
+}
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #06030e; /* Dark background */
+  color: #ddcccc;            /* Light text */
+  font-family: 'Segoe UI', sans-serif;
+  /* overflow: hidden;
+   overflow-y: auto; */
+}
+/* Fullscreen centering wrapper */
+.app-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* use viewport height for reliability */
+  background-color: var(--bg-color);
+}
+
+/* Container for content */
+.app-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.aurora-container {
+  width: 100vw;              /* Full screen width */
+  max-height: 10em;          /* Limit height */
+  /* height: em;             Try to fill screen height */
+  display: flex;             /* Center content */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;          /* Hide anything that overflows */
+  background-color: transparent; 
+}
+
+
+.header {
+  position: relative;
+  width: 100vw;              /* Full screen width */
+  max-height: 60em;          /* Limit height */
+  height: 60em;             /* Try to fill screen height */
+  display: flex;             /* Center content */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;          /* Hide anything that overflows */
+  background-color: black; /* Optional: Dark background */
+}
+
+.blur-text {
+  width: 2000px;
+  font-size: 20em;
+  color: rgb(246, 242, 242);
+  font-weight: 1000; /* Standard CSS font-weight values are 100-900.
+                       1000 might be treated as 900 or the heaviest available.
+                       If 'Doto' font has a specific '1000' weight, it might work. */
+  font-family: "Doto", Arial, sans-serif; /* Added common fallbacks */
+  position: absolute;
+  z-index: 100; /* This will be the effective z-index */
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none; /* Standard property */
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none;    /* For Firefox */
+  -ms-user-select: none;     /* For older IE/Edge */
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.2em;
+  color: var(--accent-color);
+}
+
+h2 {
+  margin-top: 2rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.3rem;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;  /* Optional max width */
+  aspect-ratio: 16 / 9;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px; /* Optional */
+  border: none;
+}
+.vertical-stack {
+  display: flex;
+  width: 101%;
+  flex-direction: column;
+  background-color: black; /* Dark background for the stack */
+  gap: 1rem; /* Space between elements */
+  z-index: 1; /* Ensure it appears above other content */
+
+}
+
+
+@keyframes cycle-red-green-white-glow {
+  0% {
+    /* Start with Red Glow */
+    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7); /* Red */
+  }
+  33.33% {
+    /* Transition to Green Glow */
+    box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.7); /* Green */
+  }
+  66.66% {
+    /* Transition to White Glow */
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7); /* White */
+  }
+  100% {
+    /* Return to Red Glow for a smooth loop */
+    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7); /* Red */
+  }
+}
+
+/* image section */
+.text-style {
+  font-family: "Doto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 1000;
+  font-size: 3rem;
+  font-style: normal;
+  font-variation-settings: "ROND" 0;
+  text-align: center;
+  display: 'flex';
+  flex-direction: 'column';
+  align-items: 'center';
+  user-select: none;
+  color: #fff;
+  padding: 2rem;
+  z-index: 1
+}
+
+.container-style {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.image-container-style {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 700px;
+  flex: 1 1 200px;
+  border: 1px solid transparent; /* If you're animating border-color too, set an initial state */
+  border-radius: 20px;
+  /* Apply the new animation */
+  animation-name: cycle-red-green-white-glow;
+  animation-duration: 6s; /* e.g., 2 seconds per color phase (6s for Red-Green-White-Red cycle) */
+  animation-timing-function: linear; /* Smooth, even transition speed */
+  animation-iteration-count: infinite; /* Loop forever */
+}
+
+.image-style {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+.threeD_canvas_border{
+  border: 1px solid transparent; /* If you're animating border-color too, set an initial state */
+  border-radius: 20px;
+  background-color: #aba3a3;
+  /* Apply the new animation */
+  animation-name: cycle-red-green-white-glow;
+  animation-duration: 6s; /* e.g., 2 seconds per color phase (6s for Red-Green-White-Red cycle) */
+  animation-timing-function: linear; /* Smooth, even transition speed */
+  animation-iteration-count: infinite; /* Loop forever */
+}
+
+/* Styles for the YouTube Video Section */
+.youtube-section {
+  padding: 50px 20px; /* Adds some space above/below and on the sides of the section */
+  background-color: black; /* Example: A dark background for the section, change as needed */
+  display: flex;
+  flex-direction: column; /* Stack title and video container vertically */
+  align-items: center;    /* Centers children (like video-container) horizontally */
+  justify-content: center; /* Centers content vertically if section had a fixed height, good for consistency */
+}
+
+.youtube-section-title {
+  color: #ffffff; /* Example title color */
+  font-family: Doto, sans-serif; /* Example font family */
+  margin-bottom: 30px; /* Space between title and video */
+  font-size: 4em;      /* Example font size */
+  text-align: center;
+  text-decoration: none; 
+  border-bottom: none;
+}
+
+/* This container helps manage the video's width and centering */
+.video-container {
+  width: 90%;           /* Video will take up 90% of the section's width */
+  max-width: 1500px;     /* But not more than 960px wide (adjust as needed) */
+  /* margin: 0 auto; is not strictly needed if .youtube-section uses align-items: center */
+}
+
+/* This wrapper maintains the video's aspect ratio (16:9 by default) */
+.video-responsive-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (9 / 16 = 0.5625) */
+  background-color: black; /* Shows black while video loads or if it fails */
+  border-radius: 20px; /* Optional: rounded corners for the video player area */
+  animation-name: cycle-red-green-white-glow;
+  animation-duration: 6s; /* e.g., 2 seconds per color phase (6s for Red-Green-White-Red cycle) */
+  animation-timing-function: linear; /* Smooth, even transition speed */
+  animation-iteration-count: infinite; /* Loop forever */
+  user-select: none; 
+}
+
+.video-responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /* Removes the default iframe border */
+}
+
+
+/* Container for all the PixelTransition items */
+.pixel-transitions-container {
+  display: flex;                 /* 1. Enables Flexbox layout */
+  flex-wrap: wrap;               /* 2. Allows items to wrap to the next line */
+  justify-content: space-evenly; /* 3. Distributes space evenly between items and at the ends.
+                                   You can also use 'space-around' (more space between items than at ends)
+                                     or 'space-between' (space only between items, no space at ends). */
+  align-items: flex-start;       /* Aligns items at the start of the cross-axis (top).
+                                     Use 'center' if you want them vertically centered on each row. */
+  gap: 100px;    
+  padding-bottom: 100px;
+  padding-top: 100px;                
+}
+
+.fuzzy-text-container {
+  display: flex;
+  justify-content: center; /* Horizontally centers the FuzzyText component */
+  align-items: center;     /* Vertically centers if the container has a defined height */
+  padding: 40px 20px;      /* Adds some space around the FuzzyText area */
+  /* If you want to center it within a specific height: */
+  /* height: 300px; */
+  /* background-color: #1a1a1a; /* Optional: to visualize the container */
+}
+
+
+
+.lanyard-overlay {
+  position: absolute;
+  width: 200%; 
+  height: 100%; /* This was an EXAMPLE, if you set a narrow width here, it would be an issue */
+  top: -10%; /* e.g., 10% from the top of the SpotlightCard */
+  left: 50%;
+  transform: translateX(-50%); /* Centers it horizontally */
+  /* You might need to set a width and height for this wrapper if the Lanyard
+     component doesn't have intrinsic dimensions or if you want to constrain it. */
+  /* width: 150px;  */ /* Example width */
+  /* height:ss 200px; */ /* Example height */
+  z-index: 10;     /* Higher z-index: Lanyard will be on top */
+ 
+}
+
