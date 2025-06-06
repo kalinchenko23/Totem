@@ -330,12 +330,12 @@ class App {
   }
   createMedias(items, bend = 1, textColor, borderRadius, font) {
     const defaultItems = [
-      { image: 'public/team_pics/Me_and_Luis.jpg' },
-      { image: 'public/team_pics/BEARS.JPG' },
-      { image: 'public/team_pics/Rig.jpeg' },
-      { image: 'public/team_pics/Team.JPG' },
-      { image: 'public/team_pics/Team2.jpeg' },
-      { image: 'public/team_pics/Team3.jpg' }
+      { image: '/team_pics/Me_and_Luis.jpg' },
+      { image: '/team_pics/BEARS.JPG' },
+      { image: '/team_pics/Rig.jpeg' },
+      { image: '/team_pics/Team.JPG' },
+      { image: '/team_pics/Team2.jpeg' },
+      { image: '/team_pics/Team3.jpg' }
     ]
     const galleryItems = items && items.length ? items : defaultItems
     this.mediasImages = galleryItems.concat(galleryItems)
