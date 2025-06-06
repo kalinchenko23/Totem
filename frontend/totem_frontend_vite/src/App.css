@@ -1,9 +1,11 @@
+/* Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-/* Dark Mode Styles */
+
+/* Dark Mode Variables */
 :root {
   --bg-color: black;
   --text-color: #181515;
@@ -11,23 +13,22 @@
   --card-bg: #1a1a1a;
   --card-border: #333;
 }
+
+/* Global Styles */
 html, body, #root {
   height: 100%;
   width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #06030e; /* Dark background */
-  color: #ddcccc;            /* Light text */
+  background-color: #06030e;
+  color: #ddcccc;
   font-family: 'Segoe UI', sans-serif;
-  /* overflow: hidden;
-   overflow-y: auto; */
 }
+
 /* Fullscreen centering wrapper */
 .app-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* use viewport height for reliability */
+  height: 100vh;
   background-color: var(--bg-color);
 }
 
@@ -41,53 +42,50 @@ html, body, #root {
   justify-content: center;
 }
 
+/* Aurora container */
 .aurora-container {
-  width: 100vw;              /* Full screen width */
-  max-height: 10em;          /* Limit height */
-  /* height: em;             Try to fill screen height */
-  display: flex;             /* Center content */
+  width: 100vw;
+  max-height: 10em;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow: hidden;          /* Hide anything that overflows */
-  background-color: transparent; 
+  overflow: hidden;
+  background-color: transparent;
 }
 
-
+/* Header section */
 .header {
   position: relative;
-  width: 100vw;              /* Full screen width */
-  max-height: 60em;          /* Limit height */
-  height: 60em;             /* Try to fill screen height */
-  display: flex;             /* Center content */
+  width: 100vw;
+  max-height: 60em;
+  height: 60em;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow: hidden;          /* Hide anything that overflows */
-  background-color: black; /* Optional: Dark background */
+  overflow: hidden;
+  background-color: black;
 }
 
+/* Blur text */
 .blur-text {
   width: 2000px;
-  font-size: 20em;
+  font-size: clamp(3rem, 20vw, 20em); /* Responsive font size */
   color: rgb(246, 242, 242);
-  font-weight: 1000; /* Standard CSS font-weight values are 100-900.
-                       1000 might be treated as 900 or the heaviest available.
-                       If 'Doto' font has a specific '1000' weight, it might work. */
-  font-family: "Doto", Arial, sans-serif; /* Added common fallbacks */
+  font-weight: 900;
+  font-family: "Doto", Arial, sans-serif;
   position: absolute;
-  z-index: 100; /* This will be the effective z-index */
+  z-index: 100;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  user-select: none; /* Standard property */
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none;    /* For Firefox */
-  -ms-user-select: none;     /* For older IE/Edge */
+  user-select: none;
 }
 
+/* Headings */
 h1 {
   font-size: 2rem;
   margin-bottom: 0.2em;
@@ -100,10 +98,11 @@ h2 {
   padding-bottom: 0.3rem;
 }
 
+/* Video wrapper */
 .video-wrapper {
   position: relative;
   width: 100%;
-  max-width: 800px;  /* Optional max width */
+  max-width: 800px;
   aspect-ratio: 16 / 9;
 }
 
@@ -113,57 +112,52 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 8px; /* Optional */
+  border-radius: 8px;
   border: none;
 }
+
+/* Vertical stack */
 .vertical-stack {
   display: flex;
   width: 101%;
   flex-direction: column;
-  background-color: black; /* Dark background for the stack */
-  gap: 1rem; /* Space between elements */
-  z-index: 1; /* Ensure it appears above other content */
-
+  background-color: black;
+  gap: 1rem;
+  z-index: 1;
 }
 
-
+/* Animation */
 @keyframes cycle-red-green-white-glow {
   0% {
-    /* Start with Red Glow */
-    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7); /* Red */
+    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7);
   }
   33.33% {
-    /* Transition to Green Glow */
-    box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.7); /* Green */
+    box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.7);
   }
   66.66% {
-    /* Transition to White Glow */
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7); /* White */
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7);
   }
   100% {
-    /* Return to Red Glow for a smooth loop */
-    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7); /* Red */
+    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7);
   }
 }
 
-/* image section */
+/* Text style */
 .text-style {
   font-family: "Doto", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 1000;
-  font-size: 3rem;
-  font-style: normal;
-  font-variation-settings: "ROND" 0;
+  font-size: clamp(1.5rem, 5vw, 3rem); /* Responsive font size */
   text-align: center;
-  display: 'flex';
-  flex-direction: 'column';
-  align-items: 'center';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   user-select: none;
   color: #fff;
   padding: 2rem;
-  z-index: 1
+  z-index: 1;
 }
 
+/* Image container */
 .container-style {
   display: flex;
   justify-content: space-evenly;
@@ -173,6 +167,7 @@ h2 {
   gap: 1rem;
 }
 
+/* Individual image */
 .image-container-style {
   display: flex;
   flex-direction: column;
@@ -180,13 +175,12 @@ h2 {
   text-align: center;
   max-width: 700px;
   flex: 1 1 200px;
-  border: 1px solid transparent; /* If you're animating border-color too, set an initial state */
+  border: 1px solid transparent;
   border-radius: 20px;
-  /* Apply the new animation */
   animation-name: cycle-red-green-white-glow;
-  animation-duration: 6s; /* e.g., 2 seconds per color phase (6s for Red-Green-White-Red cycle) */
-  animation-timing-function: linear; /* Smooth, even transition speed */
-  animation-iteration-count: infinite; /* Loop forever */
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .image-style {
@@ -196,58 +190,56 @@ h2 {
   border-radius: 8px;
 }
 
-
-.threeD_canvas_border{
-  border: 1px solid transparent; /* If you're animating border-color too, set an initial state */
+/* 3D canvas */
+.threeD_canvas_border {
+  border: 1px solid transparent;
   border-radius: 20px;
   background-color: #aba3a3;
-  /* Apply the new animation */
   animation-name: cycle-red-green-white-glow;
-  animation-duration: 6s; /* e.g., 2 seconds per color phase (6s for Red-Green-White-Red cycle) */
-  animation-timing-function: linear; /* Smooth, even transition speed */
-  animation-iteration-count: infinite; /* Loop forever */
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-/* Styles for the YouTube Video Section */
+/* YouTube section */
 .youtube-section {
-  padding: 50px 20px; /* Adds some space above/below and on the sides of the section */
-  background-color: black; /* Example: A dark background for the section, change as needed */
+  padding: 50px 20px;
+  background-color: black;
   display: flex;
-  flex-direction: column; /* Stack title and video container vertically */
-  align-items: center;    /* Centers children (like video-container) horizontally */
-  justify-content: center; /* Centers content vertically if section had a fixed height, good for consistency */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .youtube-section-title {
-  color: #ffffff; /* Example title color */
-  font-family: Doto, sans-serif; /* Example font family */
-  margin-bottom: 30px; /* Space between title and video */
-  font-size: 4em;      /* Example font size */
+  color: #ffffff;
+  font-family: Doto, sans-serif;
+  margin-bottom: 30px;
+  font-size: clamp(2rem, 6vw, 4em); /* Responsive font size */
   text-align: center;
-  text-decoration: none; 
+  text-decoration: none;
   border-bottom: none;
 }
 
-/* This container helps manage the video's width and centering */
+/* YouTube video container */
 .video-container {
-  width: 90%;           /* Video will take up 90% of the section's width */
-  max-width: 1500px;     /* But not more than 960px wide (adjust as needed) */
-  /* margin: 0 auto; is not strictly needed if .youtube-section uses align-items: center */
+  width: 90%;
+  max-width: 1500px;
 }
 
-/* This wrapper maintains the video's aspect ratio (16:9 by default) */
+/* Responsive wrapper for video */
 .video-responsive-wrapper {
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio (9 / 16 = 0.5625) */
-  background-color: black; /* Shows black while video loads or if it fails */
-  border-radius: 20px; /* Optional: rounded corners for the video player area */
+  padding-top: 56.25%;
+  background-color: black;
+  border-radius: 20px;
   animation-name: cycle-red-green-white-glow;
-  animation-duration: 6s; /* e.g., 2 seconds per color phase (6s for Red-Green-White-Red cycle) */
-  animation-timing-function: linear; /* Smooth, even transition speed */
-  animation-iteration-count: infinite; /* Loop forever */
-  user-select: none; 
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  user-select: none;
 }
 
 .video-responsive-wrapper iframe {
@@ -258,48 +250,91 @@ h2 {
   right: 0;
   width: 100%;
   height: 100%;
-  border: none; /* Removes the default iframe border */
+  border: none;
 }
 
-
-/* Container for all the PixelTransition items */
+/* Pixel transitions container */
 .pixel-transitions-container {
-  display: flex;                 /* 1. Enables Flexbox layout */
-  flex-wrap: wrap;               /* 2. Allows items to wrap to the next line */
-  justify-content: space-evenly; /* 3. Distributes space evenly between items and at the ends.
-                                   You can also use 'space-around' (more space between items than at ends)
-                                     or 'space-between' (space only between items, no space at ends). */
-  align-items: flex-start;       /* Aligns items at the start of the cross-axis (top).
-                                     Use 'center' if you want them vertically centered on each row. */
-  gap: 100px;    
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 100px;
   padding-bottom: 100px;
-  padding-top: 100px;                
+  padding-top: 100px;
 }
 
+/* Fuzzy text container */
 .fuzzy-text-container {
   display: flex;
-  justify-content: center; /* Horizontally centers the FuzzyText component */
-  align-items: center;     /* Vertically centers if the container has a defined height */
-  padding: 40px 20px;      /* Adds some space around the FuzzyText area */
-  /* If you want to center it within a specific height: */
-  /* height: 300px; */
-  /* background-color: #1a1a1a; /* Optional: to visualize the container */
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
 }
 
-
-
+/* Lanyard overlay */
 .lanyard-overlay {
   position: absolute;
-  width: 200%; 
-  height: 100%; /* This was an EXAMPLE, if you set a narrow width here, it would be an issue */
-  top: -10%; /* e.g., 10% from the top of the SpotlightCard */
+  width: 200%;
+  height: 100%;
+  top: -10%;
   left: 50%;
-  transform: translateX(-50%); /* Centers it horizontally */
-  /* You might need to set a width and height for this wrapper if the Lanyard
-     component doesn't have intrinsic dimensions or if you want to constrain it. */
-  /* width: 150px;  */ /* Example width */
-  /* height:ss 200px; */ /* Example height */
-  z-index: 10;     /* Higher z-index: Lanyard will be on top */
- 
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
+/* 🌟 Responsive Breakpoints */
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .blur-text {
+    font-size: clamp(2rem, 15vw, 10em);
+    width: auto;
+  }
+
+  .header {
+    height: auto;
+    max-height: 40em;
+    padding: 1rem;
+  }
+
+  .youtube-section-title {
+    font-size: clamp(1.5rem, 5vw, 3em);
+  }
+
+  .pixel-transitions-container {
+    gap: 50px;
+    padding: 50px 20px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .blur-text {
+    font-size: clamp(1rem, 12vw, 5em);
+    width: auto;
+  }
+
+  .header {
+    height: auto;
+    max-height: 30em;
+    padding: 1rem;
+  }
+
+  .youtube-section-title {
+    font-size: clamp(1.2rem, 5vw, 2em);
+  }
+
+  .container-style {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .pixel-transitions-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+}
