@@ -4,7 +4,6 @@ import './index.css';
 import App from './App.jsx';
 import Header from './Header.jsx';
 import ResponsiveBanner from './components/SmallScreenBanner';
-import Lanyard from './components/Lanyard';
 
 // Create a wrapper component to handle the logic:
 const MainApp = () => {
@@ -27,9 +26,6 @@ const MainApp = () => {
 
   return (
     <>
-      {/* <div className="lanyard-overlay">
-        <Lanyard position={[0, 0, 25]} gravity={[0, -40, 0]} />
-      </div> */}
       <Header />
       <App />
     </>

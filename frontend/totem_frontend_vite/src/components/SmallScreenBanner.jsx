@@ -32,7 +32,7 @@ const ResponsiveBanner = () => {
   padding: '1rem',
   fontSize: '2rem'
 }}>
-  Unfortunateley due to it's 3D rendering features other animation this webpage is only supported on screens that are 1024 pixels wide or higher. The minimum recomended screen is 11ich tablet tilted horizontally.
+  Unfortunateley due to it's 3D rendering features and other animation this webpage is only supported on screens that are 1024 pixels wide or higher. The minimum recomended screen is 11ich tablet tilted horizontally.
 
   {/* LED lights container */}
   <div style={{

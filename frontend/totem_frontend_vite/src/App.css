@@ -187,7 +187,7 @@ h2 {
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 20px;
 }
 
 /* 3D canvas */
@@ -264,77 +264,6 @@ h2 {
   padding-top: 100px;
 }
 
-/* Fuzzy text container */
-.fuzzy-text-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
 
-/* Lanyard overlay */
-.lanyard-overlay {
-  position: absolute;
-  width: 200%;
-  height: 100%;
-  top: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
 
-/* 🌟 Responsive Breakpoints */
 
-/* Tablet adjustments */
-@media (max-width: 1024px) {
-  .blur-text {
-    font-size: clamp(2rem, 15vw, 10em);
-    width: auto;
-  }
-
-  .header {
-    height: auto;
-    max-height: 40em;
-    padding: 1rem;
-  }
-
-  .youtube-section-title {
-    font-size: clamp(1.5rem, 5vw, 3em);
-  }
-
-  .pixel-transitions-container {
-    gap: 50px;
-    padding: 50px 20px;
-  }
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .blur-text {
-    font-size: clamp(1rem, 12vw, 5em);
-    width: auto;
-  }
-
-  .header {
-    height: auto;
-    max-height: 30em;
-    padding: 1rem;
-  }
-
-  .youtube-section-title {
-    font-size: clamp(1.2rem, 5vw, 2em);
-  }
-
-  .container-style {
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-  }
-
-  .pixel-transitions-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    padding: 40px 20px;
-  }
-}

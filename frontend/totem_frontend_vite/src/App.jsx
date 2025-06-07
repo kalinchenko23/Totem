@@ -6,14 +6,12 @@ import image3 from '/image3.png';
 import GradientText from './components/GradientText';
 import Folder from './components/Folder';
 import ScrollVelocity from './components/ScrollVelocity';
-import FuzzyText from './components/FuzzyText'
 import InfiniteScroll from './components/InfiniteScroll'
 import Aurora from './components/Aurora';
 import CircularGallery from './components/CircularGallery.jsx'
 import ScrollableScene from './components/tower.jsx';
 import ProfileCard from './components/ProfileCard'
 import LightSignalTable from './components/LightSignalTable'; 
-
 
   function App() {
     const folderLinks = [
@@ -34,6 +32,8 @@ import LightSignalTable from './components/LightSignalTable';
    
 
   return (
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />,
+
     <div className="App">
       <div className="vertical-stack">
         
@@ -161,15 +161,14 @@ import LightSignalTable from './components/LightSignalTable';
             </div>
           </div>
         </div>
-               <div className="fuzzy-text-container">
-                  <FuzzyText 
-                    baseIntensity={0.2} 
-                    hoverIntensity={1} 
-                    enableHover={true}
-                  >
-                  Meet the team!
-                </FuzzyText>
-                </div>
+                <GradientText
+                colors={["#ffffff", "#00ff66", "#ff4040", "#00ff66", "#ff4040"]}
+                animationSpeed={3}
+                showBorder={false}
+                fontSize="3em" 
+              >
+               Meet the team!
+              </GradientText>
         {/* Team Cards Section */}
          <div className="pixel-transitions-section">
             <div className="pixel-transitions-container"> {/* This is the flex container */}
@@ -229,7 +228,7 @@ import LightSignalTable from './components/LightSignalTable';
             />
             </div>
           </div>
-          <div style={{height: '700px', position: 'relative'}}>
+          <div >
             <GradientText
                 colors={["#ffffff", "#00ff66", "#ff4040", "#00ff66", "#ff4040"]}
                 animationSpeed={3}
@@ -238,20 +237,22 @@ import LightSignalTable from './components/LightSignalTable';
               >
                Our thank you to the following contributors
               </GradientText>
+            </div>
             <InfiniteScroll
               items={items}
               isTilted={false}
               tiltDirection='left'
               autoplay={true}
-              autoplaySpeed={0.7}
+              autoplaySpeed={1}
               autoplayDirection="down"
               pauseOnHover={true}
             />
-          </div>
+
+         
 
 
           {/* Photo Gallery */}
-          <div style={{height: '600px', position: 'relative',backgroundColor:'transparent', paddingTop: "300px"}}>
+          <div style={{height: '600px', position: 'relative',backgroundColor:'black'}}>
              <GradientText
                 colors={["#ffffff", "#00ff66", "#ff4040", "#00ff66", "#ff4040"]}
                 animationSpeed={3}
@@ -261,7 +262,7 @@ import LightSignalTable from './components/LightSignalTable';
                Our project gallery
               </GradientText>
           
-          <div style={{ height: '600px', position: 'relative' }}>
+          <div style={{ height: '600px', position: 'relative', paddingTop: '50px'}}>
               <CircularGallery bend={0} textColor="#ffffff" borderRadius={0.05} />
 
             </div>
@@ -270,7 +271,7 @@ import LightSignalTable from './components/LightSignalTable';
           
           {/* Footer starts */}
           <div style={{
-                position: 'relative', height: '400px', padding: '400px'}}>
+                position: 'relative', height: '400px',width: '100%', padding: '200px'}}>
 
                    <div style={{ textAlign: 'center', transform: 'translateX(0px)' }}>
                           <img
@@ -288,7 +289,7 @@ import LightSignalTable from './components/LightSignalTable';
                 <div style={{
                   position: 'relative',
                   bottom: '0px',  // Pushes it to the bottom (respecting parent's padding if set, or use bottom:0)
-                  left: '-400px',   // Aligns to the left (respecting parent's padding)
+                  left: '-200px',   // Aligns to the left (respecting parent's padding)
                   right: '0px',
                   width: '100%',  // Stretches to the right (respecting parent's padding)
                   transform: 'scaleY(-1)' // Optional: keeps it upside down
