@@ -13,6 +13,7 @@ import ScrollableScene from './components/tower.jsx';
 import ProfileCard from './components/ProfileCard'
 import LightSignalTable from './components/LightSignalTable'; 
 
+
   function App() {
     const folderLinks = [
     { id: 'link1', label: 'MICS', url: 'https://www.ischool.berkeley.edu/programs/mics' },
@@ -32,8 +33,6 @@ import LightSignalTable from './components/LightSignalTable';
    
 
   return (
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />,
-
     <div className="App">
       <div className="vertical-stack">
         
@@ -161,7 +160,7 @@ import LightSignalTable from './components/LightSignalTable';
             </div>
           </div>
         </div>
-                <GradientText
+              <GradientText
                 colors={["#ffffff", "#00ff66", "#ff4040", "#00ff66", "#ff4040"]}
                 animationSpeed={3}
                 showBorder={false}
@@ -228,7 +227,7 @@ import LightSignalTable from './components/LightSignalTable';
             />
             </div>
           </div>
-          <div >
+          <div style={{height: '700px', position: 'relative'}}>
             <GradientText
                 colors={["#ffffff", "#00ff66", "#ff4040", "#00ff66", "#ff4040"]}
                 animationSpeed={3}
@@ -237,22 +236,20 @@ import LightSignalTable from './components/LightSignalTable';
               >
                Our thank you to the following contributors
               </GradientText>
-            </div>
             <InfiniteScroll
               items={items}
               isTilted={false}
               tiltDirection='left'
               autoplay={true}
-              autoplaySpeed={1}
+              autoplaySpeed={0.7}
               autoplayDirection="down"
               pauseOnHover={true}
             />
-
-         
+          </div>
 
 
           {/* Photo Gallery */}
-          <div style={{height: '600px', position: 'relative',backgroundColor:'black'}}>
+          <div style={{height: '600px', position: 'relative',backgroundColor:'transparent', paddingTop: "300px"}}>
              <GradientText
                 colors={["#ffffff", "#00ff66", "#ff4040", "#00ff66", "#ff4040"]}
                 animationSpeed={3}
@@ -262,7 +259,7 @@ import LightSignalTable from './components/LightSignalTable';
                Our project gallery
               </GradientText>
           
-          <div style={{ height: '600px', position: 'relative', paddingTop: '50px'}}>
+          <div style={{ height: '600px', position: 'relative' }}>
               <CircularGallery bend={0} textColor="#ffffff" borderRadius={0.05} />
 
             </div>
@@ -271,7 +268,7 @@ import LightSignalTable from './components/LightSignalTable';
           
           {/* Footer starts */}
           <div style={{
-                position: 'relative', height: '400px',width: '100%', padding: '200px'}}>
+                position: 'relative', height: '400px', padding: '400px'}}>
 
                    <div style={{ textAlign: 'center', transform: 'translateX(0px)' }}>
                           <img
@@ -289,7 +286,7 @@ import LightSignalTable from './components/LightSignalTable';
                 <div style={{
                   position: 'relative',
                   bottom: '0px',  // Pushes it to the bottom (respecting parent's padding if set, or use bottom:0)
-                  left: '-200px',   // Aligns to the left (respecting parent's padding)
+                  left: '-400px',   // Aligns to the left (respecting parent's padding)
                   right: '0px',
                   width: '100%',  // Stretches to the right (respecting parent's padding)
                   transform: 'scaleY(-1)' // Optional: keeps it upside down
