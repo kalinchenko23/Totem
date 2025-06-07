@@ -227,7 +227,6 @@ import LightSignalTable from './components/LightSignalTable';
             />
             </div>
           </div>
-          <div style={{height: '700px', position: 'relative'}}>
             <GradientText
                 colors={["#ffffff", "#00ff66", "#ff4040", "#00ff66", "#ff4040"]}
                 animationSpeed={3}
@@ -236,7 +235,7 @@ import LightSignalTable from './components/LightSignalTable';
               >
                Our thank you to the following contributors
               </GradientText>
-            <InfiniteScroll
+          <InfiniteScroll
               items={items}
               isTilted={false}
               tiltDirection='left'
@@ -245,11 +244,10 @@ import LightSignalTable from './components/LightSignalTable';
               autoplayDirection="down"
               pauseOnHover={true}
             />
-          </div>
 
 
           {/* Photo Gallery */}
-          <div style={{height: '600px', position: 'relative',backgroundColor:'transparent', paddingTop: "300px"}}>
+          <div style={{height: '600px', position: 'relative',backgroundColor:'transparent'}}>
              <GradientText
                 colors={["#ffffff", "#00ff66", "#ff4040", "#00ff66", "#ff4040"]}
                 animationSpeed={3}
@@ -268,7 +266,7 @@ import LightSignalTable from './components/LightSignalTable';
           
           {/* Footer starts */}
           <div style={{
-                position: 'relative', height: '400px', padding: '400px'}}>
+                position: 'relative', height: '400px', padding: '200px'}}>
 
                    <div style={{ textAlign: 'center', transform: 'translateX(0px)' }}>
                           <img
@@ -286,7 +284,7 @@ import LightSignalTable from './components/LightSignalTable';
                 <div style={{
                   position: 'relative',
                   bottom: '0px',  // Pushes it to the bottom (respecting parent's padding if set, or use bottom:0)
-                  left: '-400px',   // Aligns to the left (respecting parent's padding)
+                  left: '-200px',   // Aligns to the left (respecting parent's padding)
                   right: '0px',
                   width: '100%',  // Stretches to the right (respecting parent's padding)
                   transform: 'scaleY(-1)' // Optional: keeps it upside down
