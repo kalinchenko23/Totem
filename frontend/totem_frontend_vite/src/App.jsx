@@ -270,7 +270,7 @@ import LightSignalTable from './components/LightSignalTable';
 
                    <div style={{ textAlign: 'center', transform: 'translateX(0px)' }}>
                           <img
-                            src={'/University_of_California_Logo.png'}
+                            src={'/University_of_California_Logo.webp'}
                             alt="Let there be light" // More descriptive alt text
                             style={{ maxWidth: '100%', maxHeight: '400px', height: '300px' }} // Set height to auto for aspect ratio
                           />
