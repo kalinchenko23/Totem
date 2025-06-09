@@ -146,7 +146,7 @@ h2 {
 .text-style {
   font-family: "Doto", sans-serif;
   font-weight: 1000;
-  font-size: clamp(1.5rem, 5vw, 3rem); /* Responsive font size */
+  font-size: clamp(1.5rem, 5vw, 2rem); /* Responsive font size */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -164,7 +164,7 @@ h2 {
   align-items: flex-start;
   padding: 2rem;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 /* Individual image */

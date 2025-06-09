@@ -14,7 +14,7 @@ function ModelViewer({ modelUrl }) {
     <div style={{ height: '100vh', width: '100%', backgroundColor: 'transparent',paddingLeft: "400px",paddingRight: '400px', paddingBottom: '350px' }}>
        <div style={{ textAlign: 'center', transform: 'translateX(-55px)' }}>
           <img
-            src={'/let_there_be_light2-removebg-preview.png'}
+            src={'/let_there_be_light2-removebg-preview.webp'}
             alt="Let there be light" // More descriptive alt text
             style={{ maxWidth: '100%', maxHeight: '400px', height: '300px' }} // Set height to auto for aspect ratio
           />

@@ -1,8 +1,8 @@
 import './App.css';
 import SpotlightCard from './components/SpotlightCard';
-import image1 from '/image1.png';
-import image2 from '/image2.png';
-import image3 from '/image3.png';
+import image1 from '/image1.webp';
+import image2 from '/image2.webp';
+import image3 from '/image3.webp';
 import GradientText from './components/GradientText';
 import Folder from './components/Folder';
 import ScrollVelocity from './components/ScrollVelocity';
@@ -175,7 +175,7 @@ import LightSignalTable from './components/LightSignalTable';
               name="Max"
               title="Software Engineer"
               contactText="Contact Me"
-              avatarUrl="/Max_no_background.png"
+              avatarUrl="/Max_no_background.webp"
               showUserInfo={true}
               enableTilt={true}
               contactUrl='https://www.linkedin.com/in/maksym-kalinchenko-146746183/'
@@ -185,7 +185,7 @@ import LightSignalTable from './components/LightSignalTable';
               name="Luis"
               title="Networking Guru"
               contactText="Contact Me"
-              avatarUrl="/Luis_no_background.png"
+              avatarUrl="/Luis_no_background.webp"
               contactUrl="https://www.linkedin.com/in/lignaciovalencia/"
               showUserInfo={true}
               enableTilt={true}
@@ -197,7 +197,7 @@ import LightSignalTable from './components/LightSignalTable';
               handle="javicodes"
               status="Online"
               contactText="Contact Me"
-              avatarUrl="/Matt_no_background.png"
+              avatarUrl="/Matt_no_background.webp"
               contactUrl='https://www.ischool.berkeley.edu/people/matt-campbell'
               showUserInfo={true}
               enableTilt={true}
@@ -207,7 +207,7 @@ import LightSignalTable from './components/LightSignalTable';
               name="Charles"
               title="Future CEO"
               contactText="Contact Me"
-              avatarUrl="/Charles_no_background.png"
+              avatarUrl="/Charles_no_background.webp"
               contactUrl='https://www.ischool.berkeley.edu/people/charles-keith'
               showUserInfo={true}
               enableTilt={true}
@@ -219,7 +219,7 @@ import LightSignalTable from './components/LightSignalTable';
               handle="javicodes"
               status="Online"
               contactText="Contact Me"
-              avatarUrl="/Alex_no_background.png"
+              avatarUrl="/Alex_no_background.webp"
               contactUrl='https://www.linkedin.com/in/alexander-radetsky/'
               showUserInfo={true}
               enableTilt={true}
