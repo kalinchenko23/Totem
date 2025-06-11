@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   background-color: black;
-  overflow: visible; /* Or remove this line entirely */
+  overflow: hidden; /* Or remove this line entirely */
 }
 
 .card-spotlight::before {

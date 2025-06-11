@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
+import GradientText from './GradientText';
+
 // Component to load and display the GLTF model
 function Model({ url }) {
   const { scene } = useGLTF(url);
@@ -11,7 +13,7 @@ function ModelViewer({ modelUrl }) {
   return (
 
        
-    <div style={{ height: '100vh', width: '100%', backgroundColor: 'transparent',paddingLeft: "400px",paddingRight: '400px', paddingBottom: '350px' }}>
+    <div style={{backgroundColor: 'transparent',paddingLeft: "100px",paddingRight: '100px' }}>
        <div style={{ textAlign: 'center', transform: 'translateX(-55px)' }}>
           <img
             src={'/let_there_be_light2-removebg-preview.webp'}
@@ -19,18 +21,27 @@ function ModelViewer({ modelUrl }) {
             style={{ maxWidth: '100%', maxHeight: '400px', height: '300px' }} // Set height to auto for aspect ratio
           />
         </div>
-    
-      <Canvas className='threeD_canvas_border' camera={{ position: [250, 250, -250], fov: 45 }}> {/* Adjust camera as needed */}
+        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+        <GradientText
+                          colors={["#ffffff", "#00ff66", "#ff4040", "#00ff66", "#ff4040"]}
+                          animationSpeed={3}
+                          showBorder={false}
+                          className="custom-class"
+                        >
+                          Explore our device 3D Model (take a couple of seconds to render)
+                        </GradientText>
+        </div>
+      <div style={{ display: 'flex',alignItems:'center', justifyContent: 'center', height: '1200px',marginBottom: '20px' }}>  
+      <Canvas className='threeD_canvas_border' camera={{ position: [230, 50, -300], fov: 50 }}> {/* Adjust camera as needed */}
         <ambientLight intensity={2} /> {/* Basic lighting */}
-        <directionalLight position={[10, 10, 5]} intensity={5} />
+        <directionalLight position={[30, 10, 15]} intensity={5} />
         <Suspense fallback={null}> {/* Shows a fallback while the model is loading */}
           <Model url={modelUrl} />
         </Suspense>
         <OrbitControls /> {/* Allows users to rotate, pan, and zoom the camera */}
       </Canvas>
-
     </div>
-
+    </div>
   );
 }
 
