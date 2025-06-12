@@ -31,7 +31,7 @@ function ModelViewer({ modelUrl }) {
                           Explore our device 3D Model (take a couple of seconds to render)
                         </GradientText>
         </div>
-      <div style={{ display: 'flex',alignItems:'center', justifyContent: 'center', height: '1200px',marginBottom: '20px' }}>  
+      <div style={{ display: 'flex',alignItems:'center', justifyContent: 'center', height: '1000px',marginBottom: '20px' }}>  
       <Canvas className='threeD_canvas_border' camera={{ position: [230, 50, -300], fov: 50 }}> {/* Adjust camera as needed */}
         <ambientLight intensity={2} /> {/* Basic lighting */}
         <directionalLight position={[30, 10, 15]} intensity={5} />
