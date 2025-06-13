@@ -11,12 +11,13 @@ fi
 ##################
 
 ADB_PATH="/usr/bin/adb"
-ADB_LOG_PATH="/var/log/adb-monitor.log"
+IOC_DESTINATION="/usr/local/mvt"
 OUT_BINARY="adb-monitor"
 OUT_PATH="/usr/local/bin/"
 MVT_SCRIPT="scan.py"
 MVT_DESTINATION="/usr/local/bin/mvt-scan.py"
 SOURCE="adb-monitor.cpp"
+SRC_IOC_PATH="../custom_iocs"
 SVC_ACCOUNT="adbmonitor"
 SVC_CONF_FILE="vids.conf"
 SVC_CONF_PATH="/etc/adb-monitor"
@@ -25,19 +26,32 @@ SVC_NAME="adbmonitor"
 TEMP_CPP="/tmp/temp_${SOURCE}"
 TEMP_LOG="/tmp/${SOURCE}_compile.log"
 UDEV_RULE_FILE="99-android-monitor-access.rules"
+SWAP_FILE="/etc/dphys-swapfile"
+SWAP_SIZE=2048
 
 ####################
 # 00 - Prerequisites
 ####################
 
-# For Library Checks / Installations
+# Set Swap Memory Size
+if grep -q "^CONF_SWAPSIZE=512" "$SWAP_FILE"; then
+    sed -i "s/^CONF_SWAPSIZE=.*/CONF_SWAPSIZE=$SWAP_SIZE/" "$SWAP_FILE"
+    echo "[*] Updated swap memory size in config file"
 
+    dphys-swapfile swapoff 2>&1
+    dphys-swapfile setup 2>&1
+    dphys-swapfile swapon 2>&1
+    echo "[*] Applied swap size: ${SWAP_SIZE} MB"
+fi
+
+# For Library Checks / Installations
+echo "[*] Running 'apt update' for package installs"
 apt update > /dev/null 2>&1
 
 # Check for and install ADB
 if ! [ -f "$ADB_PATH" ]; then
     apt install -y adb > /dev/null 2>&1
-    echo "[+] Install ADB package"
+    echo "[+] Installed ADB package"
 fi
 
 # check for libssl
@@ -54,6 +68,14 @@ UDEV_PACKAGE="libudev-dev"
 if ! dpkg -s "$UDEV_PACKAGE" >/dev/null 2>&1; then
     apt install -y "$UDEV_PACKAGE" > /dev/null 2>&1
     echo "[+] Installed C++ package: ${UDEV_PACKAGE}"
+fi
+
+# check for libgpiod-dev
+GPIO_PACKAGE="libgpiod-dev"
+
+if ! dpkg -s "$GPIO_PACKAGE" > /dev/null 2>&1; then
+    apt install -y "$GPIO_PACKAGE" > /dev/null 2>&1
+    echo "[+] Installed C++ package: ${GPIO_PACKAGE}"
 fi
 
 # check python mvt
@@ -95,7 +117,7 @@ echo "[+] Hash placeholder updated in source file"
 
 # Compile the modified source file
 echo "[*] Compiling modified source..."
-g++ -std=c++17 -Wall -o "$OUT_BINARY" "$TEMP_CPP" -lssl -lcrypto -ludev > "$TEMP_LOG" 2>&1
+g++ -std=c++17 -Wall -o "$OUT_BINARY" "$TEMP_CPP" -lssl -lcrypto -ludev -lgpiod > "$TEMP_LOG" 2>&1
 
 # Cleanup Temp File
 echo "[-] Removing temporary source file"
@@ -118,12 +140,13 @@ fi
 
 # Check service account exists
 if ! id $SVC_ACCOUNT &> /dev/null; then
-    useradd -r -s /usr/sbin/nologin $SVC_ACCOUNT
+    useradd -m -r -s /usr/sbin/nologin $SVC_ACCOUNT
 fi
 
 # Update group memberships
 usermod -aG systemd-journal $SVC_ACCOUNT
 usermod -aG plugdev $SVC_ACCOUNT
+usermod -aG gpio $SVC_ACCOUNT
 
 echo "[+] Service account created and group access configured"
 
@@ -131,36 +154,57 @@ echo "[+] Service account created and group access configured"
 # 03 - Service Setup & Permissions
 ##################################
 
-# Create ADB log file and set permissions
-touch "$ADB_LOG_PATH"
-chown $SVC_ACCOUNT:$SVC_ACCOUNT "$ADB_LOG_PATH"
-chmod 640 "$ADB_LOG_PATH"
-echo "[+] Create ADB log file and set permissions"
-
 # Setup ADB vendor configuration
-mkdir -p "$SVC_CONF_PATH"
-mv "$SVC_CONF_FILE" "$SVC_CONF_PATH"
-chown root:$SVC_ACCOUNT "$SVC_CONF_PATH/$SVC_CONF_FILE"
-chmod 644 "$SVC_CONF_PATH/$SVC_CONF_FILE"
-echo "[+] Created ADB vendor configuration file and set permissions"
+if [ -f "$SVC_CONF_FILE" ]; then
+    mkdir -p "$SVC_CONF_PATH"
+    mv "$SVC_CONF_FILE" "$SVC_CONF_PATH"
+    chown root:$SVC_ACCOUNT "$SVC_CONF_PATH/$SVC_CONF_FILE"
+    chmod 644 "$SVC_CONF_PATH/$SVC_CONF_FILE"
+    echo "[+] Created ADB vendor configuration file and set permissions"
+fi
+
+# Setup MVT IOC folder
+if ! [ -d "$IOC_DESTINATION" ]; then
+    mkdir -p "$IOC_DESTINATION"
+    chown $SVC_ACCOUNT:$SVC_ACCOUNT "$IOC_DESTINATION"
+    chmod 400 "$IOC_DESTINATION"
+    echo "[+] Updated MVT IOC directory"
+fi
+
+# Copy custom stix files into IOC directory
+find "$SRC_IOC_PATH" -maxdepth 1 -type f -name "*.stix2" | while IFS= read -r file; do
+    echo "[*] Updating custom IOCs: $file"
+    mv "$file" "$IOC_DESTINATION"
+done
 
 # Move MVT scanning script and set permissions
-mv "$MVT_SCRIPT" "$MVT_DESTINATION"
-chown $SVC_ACCOUNT:$SVC_ACCOUNT "$MVT_DESTINATION"
-chmod 700 "$MVT_DESTINATION"
-echo "[+] Updated MVT script file and set permissions"
+if [ -f "$MVT_SCRIPT" ]; then
+    mv "$MVT_SCRIPT" "$MVT_DESTINATION"
+    chown $SVC_ACCOUNT:$SVC_ACCOUNT "$MVT_DESTINATION"
+    chmod 700 "$MVT_DESTINATION"
+    sed -i 's/\r$//' "$MVT_DESTINATION"
+    echo "[+] Updated MVT script file and set permissions"
+fi
 
 # Configure udev rules via file
-mv "$UDEV_RULE_FILE" "/etc/udev/rules.d/"
-udevadm control --reload-rules
-echo "[+] Configured monitor service udev access"
+if [ -f "$UDEV_RULE_FILE" ]; then
+    mv "$UDEV_RULE_FILE" "/etc/udev/rules.d/"
+    udevadm control --reload-rules
+    echo "[+] Configured monitor service udev access"
+fi
 
 # Configured daemon file
-mv "$SVC_FILE" "/etc/systemd/system/"
-systemctl daemon-reexec
-systemctl enable $SVC_NAME > /dev/null 2>&1
-systemctl start $SVC_NAME
-echo "[+] Systemd service created, enabled, and started"
+if [ -f "$SVC_FILE" ]; then
+    mv "$SVC_FILE" "/etc/systemd/system/"
+    systemctl daemon-reexec
+    systemctl enable $SVC_NAME > /dev/null 2>&1
+    systemctl start $SVC_NAME
+    echo "[+] Systemd service created, enabled, and started"
+fi
+
+# Download Initial IOCs
+#echo "[*] Updating MVT IOCs"
+#/usr/local/bin/mvt-android download-iocs > /dev/null 2>&1
 
 ## Script completed
 echo "[*] Setup script completed."

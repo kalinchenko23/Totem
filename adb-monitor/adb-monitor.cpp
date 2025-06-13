@@ -1,40 +1,42 @@
 // adb-monitor.cpp
 
-#include <libudev.h>
-#include <iostream>
-#include <fstream>
+#include <algorithm>
+#include <atomic>
+#include <chrono>
 #include <csignal>
-#include <unistd.h>
+#include <cstdlib>
 #include <ctime>
+#include <deque>
+#include <fstream>
+#include <gpiod.h>
+#include <iomanip>
+#include <iostream>
+#include <libudev.h>
+#include <openssl/evp.h>
+#include <sstream>
+#include <string>
+#include <sys/stat.h>
+#include <thread>
+#include <unistd.h>
 #include <unordered_map>
 #include <unordered_set>
-#include <deque>
 #include <vector>
-#include <sstream>
-#include <cstdlib>
-#include <iomanip>
-#include <sys/stat.h>
-#include <openssl/evp.h>
-#include <algorithm>
-#include <thread>
 
-const std::string LOG_FILE = "/var/log/adb-monitor.log";
-const std::string VENDOR_CONF = "/etc/adb-monitor/vids.conf";
+//const char* CHIPNAME = "gpiochip0";  // Use gpiochip0 unless your board has multiple chips
+const char* CHIPNAME = "gpiochip0";  // Use gpiochip0 unless your board has multiple chips
 const std::string ADB_PATH = "/usr/bin/adb";
 const std::string EXPECTED_ADB_HASH = "<INSERT_SHA256_HASH_HERE>";
+const std::string VENDOR_CONF = "/etc/adb-monitor/vids.conf";
 const size_t MAX_TRIGGERS_PER_MINUTE = 5;
+const unsigned int STATUS_LED_LINE = 25;  // BCM GPIO number
 
 bool running = true;
+std::atomic<bool> led_in_use(false);
+
 
 // Logs a message with a timestamp to the log file
 void log_event(const std::string& message) {
-    std::ofstream log(LOG_FILE, std::ios::app);
-    if (log.is_open()) {
-        std::time_t now = std::time(nullptr);
-        std::string time_str = std::ctime(&now);
-        time_str.pop_back();
-        log << "[" << time_str << "] " << message << std::endl;
-    }
+    std::cout << message << std::endl;
 }
 
 // Handles termination signals to gracefully shut down the program
@@ -43,8 +45,74 @@ void handle_signal(int signum) {
     running = false;
 }
 
-// Verifies the SHA256 hash of the adb binary to ensure integrity
 
+// Function to turn LED on/off based on state
+void set_led(bool state) {
+    gpiod_chip* chip = gpiod_chip_open_by_name(CHIPNAME);
+    if (!chip) {
+        std::cerr << "Failed to open GPIO chip" << std::endl;
+        return;
+    }
+
+    gpiod_line* line = gpiod_chip_get_line(chip, STATUS_LED_LINE);
+    if (!line) {
+        std::cerr << "Failed to get GPIO line" << std::endl;
+        gpiod_chip_close(chip);
+        return;
+    }
+
+    if (gpiod_line_request_output(line, "led-control", state ? 1 : 0) < 0) {
+        std::cerr << "Failed to request line as output" << std::endl;
+        gpiod_chip_close(chip);
+        return;
+    }
+
+    gpiod_line_set_value(line, state ? 1 : 0);
+
+    gpiod_line_release(line);
+    gpiod_chip_close(chip);
+}
+
+// Function to blink LED for set number of times and duration
+void blink_led(int times, int ms_interval) {
+    gpiod_chip* chip = gpiod_chip_open_by_name(CHIPNAME);
+    gpiod_line* line = gpiod_chip_get_line(chip, STATUS_LED_LINE);
+
+    if (gpiod_line_request_output(line, "led-blink", 0) < 0) {
+        std::cerr << "Could not request line as output" << std::endl;
+        gpiod_chip_close(chip);
+        return;
+    }
+
+    for (int i = 0; i < times; ++i) {
+        gpiod_line_set_value(line, 0);
+        std::this_thread::sleep_for(std::chrono::milliseconds(ms_interval));
+        gpiod_line_set_value(line, 1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(ms_interval));
+    }
+
+    gpiod_line_set_value(line, 0);  // Turn LED off after blink
+    gpiod_line_release(line);
+    gpiod_chip_close(chip);
+}
+
+// LED helper functions
+// Blink status LED for scan
+void blink_status_led_scan() {
+    while (led_in_use) {
+        blink_led(1, 500);
+    }
+}
+
+// Blink status LED for error
+void blink_status_led_error() {
+    while (led_in_use) {
+        blink_led(3, 200);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    }
+}
+
+// Verifies the SHA256 hash of the adb binary to ensure integrity
 bool verify_adb_hash(const std::string& expected_hash) {
     FILE* file = fopen(ADB_PATH.c_str(), "rb");
     if (!file) {
@@ -198,11 +266,20 @@ void handle_usb_device(const std::string& actionStr,
                 // checking adb instantiates server - blocking mvt
                 // attempt to kill existing adb server
                 system("/usr/bin/adb kill-server");
-                int result = system("/usr/local/bin/mvt-scan.py");
-                if (result != 0) {
-                    log_event("Warning: Script exited with code " + std::to_string(result));
-                }
-                std::this_thread::sleep_for(std::chrono::seconds(60));
+
+                // send led status to new thread
+                led_in_use = true;
+                std::thread blinkLED(blink_status_led_scan);
+                int result = system("/usr/local/bin/mvt-scan.py");// > /tmp/mvt-scan.py.log 2>&1");
+                led_in_use = false;
+                blinkLED.join();
+
+                set_led(1);
+                log_event("Script exited with code " + std::to_string(result));
+
+                if( result == 2) blink_status_led_error();
+                
+                pause();
             } else {
                 log_event("Rate limit exceeded: script not triggered.");
             }
@@ -221,6 +298,9 @@ int main() {
     signal(SIGINT, handle_signal);
     signal(SIGTERM, handle_signal);
 
+    // Turn on LEDp
+    set_led(1);
+
     // Clear the log on startup
     std::ofstream clearLog(LOG_FILE, std::ios::trunc);
     log_event("Log cleared on startup.");
@@ -228,22 +308,32 @@ int main() {
     // Verify ADB binary integrity
     if (!verify_adb_hash(EXPECTED_ADB_HASH)) {
         log_event("ADB binary hash mismatch — aborting.");
+        blink_status_led_error();
         return 1;
     }
 
     // Load allowed vendor IDs
     std::unordered_set<std::string> vendorIDs;
     if (!load_vendor_ids(VENDOR_CONF, vendorIDs)) {
-        std::cerr << "Failed to load vendor ID config. Exiting." << std::endl;
+        log_event("Failed to load vendor ID config. Exiting.");
+        blink_status_led_error();
         return 1;
     }
 
     // Create and configure udev monitor
     struct udev *udev = udev_new();
-    if (!udev) return 1;
+    if (!udev) {
+        log_event("Failed to access udev");
+        blink_status_led_error();
+        return 1;
+    }
 
     struct udev_monitor *mon = udev_monitor_new_from_netlink(udev, "udev");
-    if (!mon) return 1;
+    if (!mon) {
+        log_event("Failed to start udev monitor");
+        blink_status_led_error();
+        return 1;
+    }
 
     udev_monitor_filter_add_match_subsystem_devtype(mon, "usb", nullptr);
     udev_monitor_enable_receiving(mon);
@@ -305,6 +395,7 @@ int main() {
     // Cleanup and shutdown
     udev_monitor_unref(mon);
     udev_unref(udev);
+    set_led(0);
     log_event("Monitor stopped.");
     return 0;
 }
