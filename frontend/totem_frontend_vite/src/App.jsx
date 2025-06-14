@@ -14,6 +14,7 @@ import ProfileCard from './components/ProfileCard'
 import LightSignalTable from './components/LightSignalTable'; 
 
 
+
   function App() {
     const folderLinks = [
     { id: 'link1', label: 'MICS', url: 'https://www.ischool.berkeley.edu/programs/mics' },
@@ -48,6 +49,7 @@ import LightSignalTable from './components/LightSignalTable';
             <div className="text-style" style={{ color: 'white' /* Assuming white text from previous context */ }}>
   We created our digital forensics device with one clear goal: make advanced cybersecurity tools accessible to everyone. Traditional forensics solutions are often complex, technical, and intimidating. We wanted to change that. Our device is designed to be simple, intuitive, and effective. With just connecting a phone, it scans, analyzes, and communicates the results clearly using a universally understood system of lights.
         </div>
+        
            <ScrollableScene modelUrl="/sather-cover.glb" />
           
         </SpotlightCard>
@@ -215,7 +217,7 @@ import LightSignalTable from './components/LightSignalTable';
             />
             <ProfileCard
               name="Alex"
-              title="Software Engineer"
+              title="Program Manager"
               handle="javicodes"
               status="Online"
               contactText="Contact Me"

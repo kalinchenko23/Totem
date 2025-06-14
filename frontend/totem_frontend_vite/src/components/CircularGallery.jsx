@@ -336,7 +336,9 @@ class App {
       { image: '/team_pics/Team.JPG' },
       { image: '/team_pics/Team2.jpeg' },
       { image: '/team_pics/Team3.jpg' },
-      { image: '/team_pics/board.jpeg' }
+      { image: '/team_pics/board.jpeg' },
+      { image: '/team_pics/tower.jpg' },
+      { image: '/team_pics/charles_and_steve.jpeg' }
     ]
     const galleryItems = items && items.length ? items : defaultItems
     this.mediasImages = galleryItems.concat(galleryItems)

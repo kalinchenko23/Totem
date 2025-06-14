@@ -198,7 +198,7 @@ h2 {
   max-width: 1200px;
   max-height: 1200px;
   border-radius: 20px;
-  background-color: #aba3a3;
+  background-color: none;
   animation-name: cycle-red-green-white-glow;
   animation-duration: 6s;
   animation-timing-function: linear;
