@@ -64,9 +64,10 @@ def set_led(pin):
 # Obtain all IOCs and incorporate into MVT command
 def cmd_update_iocs():
     for file in glob.glob(pathname="*.stix2", root_dir=ioc_path):
-        if os.path.isfile(file):
+        full_path = f"{ioc_path}/{file}"
+        if os.path.isfile(full_path):
             mvt_command.append("--iocs")
-            mvt_command.append(file)
+            mvt_command.append(full_path)
 
 def main():
     try:
@@ -79,7 +80,7 @@ def main():
         print(f'[*] Added custom IOCs to calling scan command')
 
         # Run the MVT scan and capture output
-        print(f'[*] Executing MVT scan')
+        print(f'[*] Executing MVT scan: {mvt_command}')
         result = subprocess.run(mvt_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
         # Write output to file

@@ -301,10 +301,6 @@ int main() {
     // Turn on LEDp
     set_led(1);
 
-    // Clear the log on startup
-    std::ofstream clearLog(LOG_FILE, std::ios::trunc);
-    log_event("Log cleared on startup.");
-
     // Verify ADB binary integrity
     if (!verify_adb_hash(EXPECTED_ADB_HASH)) {
         log_event("ADB binary hash mismatch — aborting.");

@@ -78,6 +78,14 @@ if ! dpkg -s "$GPIO_PACKAGE" > /dev/null 2>&1; then
     echo "[+] Installed C++ package: ${GPIO_PACKAGE}"
 fi
 
+# check for python GPIO package
+PY_GPIO="python3-rpi.gpio"
+
+if ! dpkg -s "$PY_GPIO" > /dev/null 2>&1; then
+    apt install -y "$PY_GPIO" > /dev/null 2>&1
+    echo "[+] Installed Python package: ${PY_GPIO}"
+fi
+
 # check python mvt
 MVT_PATH="/usr/local/bin/mvt-android"
 
@@ -167,7 +175,7 @@ fi
 if ! [ -d "$IOC_DESTINATION" ]; then
     mkdir -p "$IOC_DESTINATION"
     chown $SVC_ACCOUNT:$SVC_ACCOUNT "$IOC_DESTINATION"
-    chmod 400 "$IOC_DESTINATION"
+    chmod 550 "$IOC_DESTINATION"
     echo "[+] Updated MVT IOC directory"
 fi
 
@@ -175,6 +183,11 @@ fi
 find "$SRC_IOC_PATH" -maxdepth 1 -type f -name "*.stix2" | while IFS= read -r file; do
     echo "[*] Updating custom IOCs: $file"
     mv "$file" "$IOC_DESTINATION"
+done
+
+find "$IOC_DESTINATION" -maxdepth 1 -type f -name "*.stix2" | while IFS= read -r file; do
+    chown $SVC_ACCOUNT:$SVC_ACCOUNT "$file"
+    chmod 550 "$file"
 done
 
 # Move MVT scanning script and set permissions
@@ -203,8 +216,8 @@ if [ -f "$SVC_FILE" ]; then
 fi
 
 # Download Initial IOCs
-#echo "[*] Updating MVT IOCs"
-#/usr/local/bin/mvt-android download-iocs > /dev/null 2>&1
+echo "[*] Updating MVT IOCs"
+/usr/local/bin/mvt-android download-iocs > /dev/null 2>&1
 
 ## Script completed
 echo "[*] Setup script completed."
